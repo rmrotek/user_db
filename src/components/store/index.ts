@@ -1,18 +1,19 @@
-import { createStore, combineReducers } from "redux";
+import { createStore, combineReducers, applyMiddleware } from "redux";
+import { composeWithDevTools } from 'redux-devtools-extension';
 
-export const initialState: State = {
-  users: fromUsers.initialState
-}
+import userReducer from "./reducers/users";
 
-export const reducer = combineReducers<State>({
-  users: fromUsers.reducer
+
+
+const reducer = combineReducers({
+  users: userReducer
 })
 
 const store = createStore(
-  reducer,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-
-);
+  reducer, composeWithDevTools(
+  applyMiddleware(),
+  // other store enhancers if any
+));
 
 
 
