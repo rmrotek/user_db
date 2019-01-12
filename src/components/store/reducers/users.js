@@ -28,14 +28,47 @@
 //   company: Company;
 // }
 
-const initialState = {
-  
 
-};
+export const SELECT_CHANNEL = 'SELECT_CHANNEL';
+export const REQUEST_USERS = 'REQUEST_USERS';
+export const RECEIVE_USERS = 'RECEIVE_USERS';
 
-const reducer = (state = initialState, action) => {
+export const requestUsers = () => ({
+  type: REQUEST_USERS,
+});
 
-  return state;
+export const receivedUsers = data => ({
+  type: RECEIVE_USERS,
+  users: data,
+});
+
+export function fetchUsers() {
+  return function (dispatch) {
+    dispatch(requestUsers());
+    return fetch(`http://localhost:3001/users`)
+      .then(
+        response => response.json(),
+        error => console.log('An error occurred.', error),
+      )
+      .then((json) => {
+        dispatch(receivedUsers(json));
+      },
+      );
+  };
+}
+
+
+
+const reducer = (state = {}, action) => {
+  switch (action.type) {
+    
+    case REQUEST_USERS:
+       return { ...state, loading: true };
+    case RECEIVE_USERS:
+       return { ...state, users: action.users, loading: false };
+    default:
+       return state;
+  }
 };
 
 export default reducer

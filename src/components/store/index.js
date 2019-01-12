@@ -1,21 +1,28 @@
 import { createStore, combineReducers, applyMiddleware } from "redux";
 import { composeWithDevTools } from 'redux-devtools-extension';
 
-import userReducer from "./reducers/users";
+import thunk from 'redux-thunk';
+
+import userReducer, { fetchUsers } from "./reducers/users";
 
 
 
-const reducer = combineReducers({
-  users: userReducer
+const rootReducer = combineReducers({
+  usersData: userReducer
 })
 
 const store = createStore(
-  reducer, composeWithDevTools(
-  applyMiddleware(),
-  // other store enhancers if any
-));
+  rootReducer, composeWithDevTools(
+    applyMiddleware(thunk),
+    // other store enhancers if any
+  ));
 
 
+
+
+store.dispatch(
+  fetchUsers()
+);
 
 
 export default store 
