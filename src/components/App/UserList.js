@@ -2,15 +2,16 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import { connect } from 'react-redux'
 import UserItem from './UserItem';
+import { List } from '@material-ui/core';
 
 let UserList = ({ users, loading }) => {
   let usersList = '';
   if (users) {
     
     usersList = users.map((user, id) => (
-      <div key={`${id}`} className='row'>
+      <List key={`${id}`}>
         <UserItem user={user} />
-      </div>
+      </List>
       
     ))
   }

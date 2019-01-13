@@ -1,12 +1,21 @@
 import React from 'react';
+import { ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
+import { AccountBox } from '@material-ui/icons'
 
 const UserItem = ({ user }) => (
- <article >
-    <div className="article-wrapper">
-       <h3 className="text-center">{user.name}</h3>
-       
-    </div>
- </article>
+
+   <ListItem >
+      <ListItemText
+         primary={user.name}
+         secondary={user.email} />
+      <ListItemSecondaryAction>
+         <IconButton aria-label="Delete">
+            <AccountBox />
+         </IconButton>
+      </ListItemSecondaryAction>
+
+   </ListItem>
+
 );
 
-export default UserItem ;
+export default UserItem;
