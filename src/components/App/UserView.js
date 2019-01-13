@@ -87,11 +87,14 @@ let UserView = ({ users, match, history, requestUserDelete }) => {
               </Typography>
 
             </Grid>
-            <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='flex-end'>
+            <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
+            <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+                <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
+              </Grid>
               <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
                 <Button fullWidth variant='contained' color='primary'>Edit User</Button>
               </Grid>
-              <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
+              <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                 <Button onClick={() => requestUserDelete(user.id).then(() => history.push('/'))} fullWidth variant='contained' color='secondary'>Delete User</Button>
               </Grid>
             </Grid>
