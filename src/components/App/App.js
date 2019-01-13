@@ -15,11 +15,11 @@ class App extends Component {
     return (
 
       <Router>
-        <Grid container justify='center' >
+        <div>
           
           <Route exact path="/" component={UserListView} />
           <Route path="/users/:userId" component={UserView} />
-        </Grid>
+        </div>
 
 
       </Router>

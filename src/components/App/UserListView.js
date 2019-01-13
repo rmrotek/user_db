@@ -15,7 +15,7 @@ let UserListView = ({ fetchUsers }) => {
           List of users:
           </Typography>
       </Grid>
-      <Grid item xl={4} lg={4} md={4} sm={5} xs={12}>
+      <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <UserList />
       </Grid>
     </Grid>
