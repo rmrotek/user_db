@@ -75,7 +75,7 @@ const reducer = (state = {}, action) => {
     case RECEIVE_USERS:
       return { ...state, users: action.users, loading: false };
     case DELETE_USER:
-      return state
+      return {users: state.users.filter(user => user.id !== action.userId)}
     default:
       return state;
   }
