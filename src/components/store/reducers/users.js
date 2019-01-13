@@ -29,9 +29,10 @@
 // }
 
 
-export const SELECT_CHANNEL = 'SELECT_CHANNEL';
+
 export const REQUEST_USERS = 'REQUEST_USERS';
 export const RECEIVE_USERS = 'RECEIVE_USERS';
+export const DELETE_USER = 'DELETE_USER';
 
 export const requestUsers = () => ({
   type: REQUEST_USERS,
@@ -40,6 +41,11 @@ export const requestUsers = () => ({
 export const receivedUsers = data => ({
   type: RECEIVE_USERS,
   users: data,
+});
+
+export const deleteUser = userId => ({
+  type: DELETE_USER,
+  userId,
 });
 
 export function fetchUsers() {
@@ -63,13 +69,15 @@ export function fetchUsers() {
 
 const reducer = (state = {}, action) => {
   switch (action.type) {
-    
+
     case REQUEST_USERS:
-       return { ...state, loading: true };
+      return { ...state, loading: true };
     case RECEIVE_USERS:
-       return { ...state, users: action.users, loading: false };
+      return { ...state, users: action.users, loading: false };
+    case DELETE_USER:
+      return state
     default:
-       return state;
+      return state;
   }
 };
 
