@@ -4,26 +4,35 @@ import { connect } from 'react-redux'
 
 
 
-let UserView = ({ user }) => {
-  // const userId = this.props.match.params.userId;
-  return (
+let UserView = ({ users, match}) => {
+  const userId = parseInt(match.params.userId);
+  const user = users && users.find(user => user.id === userId)
+  
+    if(user){
+      return (
+        <div>
+          {user.name}
+        </div>
+      )
+    }
+    return (
+      <div>
+        loading
+      </div>
+    )
 
-    <>
-      userview
-   </>
-
-  )
+  
 
 
 };
 
 const mapStateToProps = (state) => ({
   users: state.usersData.users,
-  loading: state.usersData.loading
+  
 })
 
 const mapDispatchToProps = {
-  //for later
+  //
 };
 
 UserView = connect(mapStateToProps, mapDispatchToProps)(UserView)
