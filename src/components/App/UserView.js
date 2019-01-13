@@ -3,7 +3,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Grid, Typography, Button } from '@material-ui/core';
 
-import {deleteUser, requestUserDelete} from "../../store/reducers/users"
+import { requestUserDelete } from "../../store/reducers/users"
 import { Link } from 'react-router-dom';
 
 
@@ -120,7 +120,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  deleteUser,
+  
   requestUserDelete
 };
 

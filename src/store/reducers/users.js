@@ -43,10 +43,10 @@ export const receivedUsers = data => ({
   users: data,
 });
 
-export const deleteUser = userId => ({
-  type: DELETE_USER,
-  userId,
-});
+// export const deleteUser = userId => ({
+//   type: DELETE_USER,
+//   userId,
+// });
 
 export function fetchUsers() {
   return function (dispatch) {
@@ -65,10 +65,8 @@ export function fetchUsers() {
 
 export function requestUserDelete(userId) {
   return function (dispatch) {
-    dispatch(fetchUsers())
     return fetch(`http://localhost:3001/users/${userId}`, {method: 'DELETE'})
-      
-    
+    .then(()=> dispatch(fetchUsers()))
   }
 }
 
@@ -80,11 +78,11 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
 
     case REQUEST_USERS:
-      return { loading: true };
+      return { ...state, loading: true };
     case RECEIVE_USERS:
       return { ...state, users: action.users, loading: false };
-    case DELETE_USER:
-      return {users: state.users.filter(user => user.id !== action.userId)}
+    // case DELETE_USER:
+    //   return {users: state.users.filter(user => user.id !== action.userId)}
     default:
       return state;
   }
