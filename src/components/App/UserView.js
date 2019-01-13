@@ -11,7 +11,7 @@ import { Link } from 'react-router-dom';
 
 
 
-let UserView = ({ users, match, requestUserDelete }) => {
+let UserView = ({ users, match, history, requestUserDelete }) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find(user => user.id === userId)
 
@@ -92,7 +92,7 @@ let UserView = ({ users, match, requestUserDelete }) => {
                 <Button fullWidth variant='contained' color='primary'>Edit User</Button>
               </Grid>
               <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
-                <Button onClick={() => requestUserDelete(user.id)} component={Link} to={'/'} fullWidth variant='contained' color='secondary'>Delete User</Button>
+                <Button onClick={() => requestUserDelete(user.id).then(() => history.push('/'))} fullWidth variant='contained' color='secondary'>Delete User</Button>
               </Grid>
             </Grid>
 
