@@ -3,12 +3,12 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Grid, Typography, Button } from '@material-ui/core';
 
-import {deleteUser} from "../store/reducers/users"
+import {deleteUser, requestUserDelete} from "../store/reducers/users"
 import { Link } from 'react-router-dom';
 
 
 
-let UserView = ({ users, match, deleteUser }) => {
+let UserView = ({ users, match, deleteUser, requestUserDelete }) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find(user => user.id === userId)
 
@@ -89,7 +89,7 @@ let UserView = ({ users, match, deleteUser }) => {
                 <Button fullWidth variant='contained' color='primary'>Edit User</Button>
               </Grid>
               <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
-                <Button onClick={() => deleteUser(user.id)} component={Link} to={`/`} fullWidth variant='contained' color='secondary'>Delete User</Button>
+                <Button onClick={() => requestUserDelete(user.id)} component={Link} to={`/`} fullWidth variant='contained' color='secondary'>Delete User</Button>
               </Grid>
             </Grid>
 
@@ -117,7 +117,8 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  deleteUser
+  deleteUser,
+  requestUserDelete
 };
 
 UserView = connect(mapStateToProps, mapDispatchToProps)(UserView)
