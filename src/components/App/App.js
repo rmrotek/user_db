@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { Grid, Typography } from '@material-ui/core'
-import './App.css';
 import UserList from './UserList';
 
 class App extends Component {
