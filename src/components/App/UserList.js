@@ -2,9 +2,12 @@ import ReactDOM from 'react-dom'
 import React from 'react'
 import { connect } from 'react-redux'
 import UserItem from './UserItem';
+
+
 import { List } from '@material-ui/core';
 
 let UserList = ({ users, loading }) => {
+  
   let usersList = '';
   if (users) {
     
@@ -29,6 +32,10 @@ const mapStateToProps = (state) => ({
   loading: state.usersData.loading
 })
 
-UserList = connect(mapStateToProps, null)(UserList)
+const mapDispatchToProps = {
+  //for later
+};
+
+UserList = connect(mapStateToProps, mapDispatchToProps)(UserList)
 
 export default UserList;
