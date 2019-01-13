@@ -7,7 +7,6 @@ import UserListView from './UserListView';
 import UserView from './UserView';
 
 import { connect } from 'react-redux'
-import { fetchUsers } from "../store/reducers/users";
 
 
 class App extends Component {
@@ -32,7 +31,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  fetchUsers
+  
 };
 
 App = connect(mapStateToProps, mapDispatchToProps)(App)
