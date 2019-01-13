@@ -3,7 +3,7 @@ import { Grid, Typography, Button } from '@material-ui/core'
 import UserList from './UserList';
 
 import { connect } from 'react-redux'
-import { fetchUsers } from "../store/reducers/users";
+import { fetchUsers } from "../../store/reducers/users";
 
 let UserListView = ({ fetchUsers }) => {
 
