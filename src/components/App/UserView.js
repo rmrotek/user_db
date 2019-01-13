@@ -3,14 +3,19 @@ import React from 'react';
 import { connect } from 'react-redux'
 
 
-// const userId = this.props.match.params.userId;
-let UserView = ({ user }) => (
 
-   <>
-    userview
+let UserView = ({ user }) => {
+  // const userId = this.props.match.params.userId;
+  return (
+
+    <>
+      userview
    </>
 
-);
+  )
+
+
+};
 
 const mapStateToProps = (state) => ({
   users: state.usersData.users,
@@ -24,3 +29,4 @@ const mapDispatchToProps = {
 UserView = connect(mapStateToProps, mapDispatchToProps)(UserView)
 
 export default UserView;
+
