@@ -4,12 +4,12 @@ import { AccountBox } from '@material-ui/icons'
 
 const UserItem = ({ user }) => (
 
-   <ListItem >
+   <ListItem alignItems='flex-start' divider>
       <ListItemText
          primary={user.name}
          secondary={user.email} />
       <ListItemSecondaryAction>
-         <IconButton aria-label="Delete">
+         <IconButton color='primary' aria-label="Details">
             <AccountBox />
          </IconButton>
       </ListItemSecondaryAction>

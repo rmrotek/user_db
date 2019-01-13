@@ -9,7 +9,7 @@ let UserList = ({ users, loading }) => {
   if (users) {
     
     usersList = users.map((user, id) => (
-      <List key={`${id}`}>
+      <List key={`${id}`} style={{background: 'lightgrey'}}>
         <UserItem user={user} />
       </List>
       
