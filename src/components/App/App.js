@@ -16,9 +16,9 @@ class App extends Component {
 
       <Router>
         <Grid container justify='center' >
-          <Button onClick={() => this.props.fetchUsers()}>Refresh List</Button>
+          
           <Route exact path="/" component={UserListView} />
-          <Route exact path="/user" component={UserView} />
+          <Route path="/users/:userId" component={UserView} />
         </Grid>
 
 

@@ -2,18 +2,19 @@ import React from 'react';
 import { ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import { AccountBox } from '@material-ui/icons'
 
-const UserItem = ({ user }) => (
+import { Link } from "react-router-dom";
+
+let UserItem = ({ user }) => (
 
    <ListItem alignItems='flex-start' divider>
       <ListItemText
          primary={user.name}
          secondary={user.email} />
-      <ListItemSecondaryAction>
-         <IconButton color='primary' aria-label="Details">
+      <ListItemSecondaryAction >
+         <IconButton color='primary' aria-label="Details" component={Link} to={`/users/${user.id}`}>
             <AccountBox />
          </IconButton>
       </ListItemSecondaryAction>
-
    </ListItem>
 
 );
