@@ -4,6 +4,7 @@ import { connect } from 'react-redux'
 import { Grid, Typography, Button } from '@material-ui/core';
 
 import {deleteUser} from "../store/reducers/users"
+import { Link } from 'react-router-dom';
 
 
 
@@ -88,7 +89,7 @@ let UserView = ({ users, match, deleteUser }) => {
                 <Button fullWidth variant='contained' color='primary'>Edit User</Button>
               </Grid>
               <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
-                <Button onClick={() => deleteUser(user.id)} fullWidth variant='contained' color='secondary'>Delete User</Button>
+                <Button onClick={() => deleteUser(user.id)} component={Link} to={`/`} fullWidth variant='contained' color='secondary'>Delete User</Button>
               </Grid>
             </Grid>
 
