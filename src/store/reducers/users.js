@@ -80,7 +80,7 @@ const reducer = (state = {}, action) => {
   switch (action.type) {
 
     case REQUEST_USERS:
-      return { ...state, loading: true };
+      return { loading: true };
     case RECEIVE_USERS:
       return { ...state, users: action.users, loading: false };
     case DELETE_USER:

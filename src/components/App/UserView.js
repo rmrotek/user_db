@@ -92,7 +92,7 @@ let UserView = ({ users, match, requestUserDelete }) => {
                 <Button fullWidth variant='contained' color='primary'>Edit User</Button>
               </Grid>
               <Grid item xl={3} lg={3} md={3} sm={12} xs={12}>
-                <Button onClick={() => requestUserDelete(user.id)} fullWidth variant='contained' color='secondary'>Delete User</Button>
+                <Button onClick={() => requestUserDelete(user.id)} component={Link} to={'/'} fullWidth variant='contained' color='secondary'>Delete User</Button>
               </Grid>
             </Grid>
 
