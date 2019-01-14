@@ -4,10 +4,6 @@ import { Formik, Form, Field } from 'formik';
 
 import { connect } from 'react-redux'
 import { requestUserEdit } from "../../store/reducers/users"
-import { Link } from 'react-router-dom';
-
-
-
 
 let EditUserForm = ({ users, match, requestUserEdit, history }) => {
   const userId = parseInt(match.params.userId);

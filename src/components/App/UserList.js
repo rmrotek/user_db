@@ -1,4 +1,3 @@
-import ReactDOM from 'react-dom'
 import React from 'react'
 import { connect } from 'react-redux'
 import UserItem from './UserItem';

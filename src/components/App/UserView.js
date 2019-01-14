@@ -15,7 +15,6 @@ let UserView = ({ users, match, history, requestUserDelete }) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find(user => user.id === userId)
   let userView = '';
-  let editMode = false
 
   if (user) {
     userView = (
