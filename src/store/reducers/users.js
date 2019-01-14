@@ -118,6 +118,10 @@ export function requestUserEdit(data, userId) {
           suite: data.suite,
           city: data.city,
           zipcode: data.zipcode,
+          geo: {
+            lat: data.geoLat,
+            lng: data.geoLng
+          }
         },
         phone: data.phone,
         website: data.website,

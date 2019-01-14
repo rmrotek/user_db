@@ -48,7 +48,7 @@
     },
     {
       "id": 5,
-      "name": "Chelsey Dietrich",
+      "name": "asdasdasdsa",
       "username": "Kamren",
       "email": "Lucio_Hettinger@annie.ca",
       "address": {
@@ -71,18 +71,14 @@
     },
     {
       "id": 6,
-      "name": "Mrs. Dennis Schulist",
+      "name": "hello there obi",
       "username": "test",
       "email": "Karley_Dach@jasper.info",
       "address": {
         "street": "Norberto Crossing",
         "suite": "Apt. 950",
         "city": "South Christy",
-        "zipcode": "23505-1337",
-        "geo": {
-          "lat": "-37.3159",
-          "lng": "81.1496"
-        }
+        "zipcode": "23505-1337"
       },
       "phone": "1-477-935-8478 x6430",
       "website": "ola.org",

@@ -30,7 +30,9 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
           zipcode: user.address.zipcode,
           companyName: user.company.name,
           companyCatchPhrase: user.company.catchPhrase,
-          companyBs: user.company.bs
+          companyBs: user.company.bs,
+          geoLat: user.address.geo.lat,
+          geoLng: user.address.geo.lng
         }}
         validate={values => {
           let errors = {};
