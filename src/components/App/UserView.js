@@ -14,6 +14,7 @@ import { Link } from 'react-router-dom';
 let UserView = ({ users, match, history, requestUserDelete }) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find(user => user.id === userId)
+  let editMode = false
 
   if (user) {
     return (
@@ -92,7 +93,7 @@ let UserView = ({ users, match, history, requestUserDelete }) => {
                 <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
               </Grid>
               <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                <Button fullWidth variant='contained' color='primary'>Edit User</Button>
+                <Button  fullWidth variant='contained' color='primary'>Edit User</Button>
               </Grid>
               <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                 <Button onClick={() => requestUserDelete(user.id).then(() => history.push('/'))} fullWidth variant='contained' color='secondary'>Delete User</Button>

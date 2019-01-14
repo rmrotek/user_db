@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { BrowserRouter as Router, Route, NavLink } from 'react-router-dom';
+import { BrowserRouter as Router, Route} from 'react-router-dom';
 
-import { Grid, Typography, Button } from '@material-ui/core'
 import UserListView from './UserListView';
 
 import UserView from './UserView';
 
 import { connect } from 'react-redux'
+import AddUserForm from './AddUserForm';
 
 
 class App extends Component {
@@ -18,6 +18,7 @@ class App extends Component {
           
           <Route exact path="/" component={UserListView} />
           <Route path="/users/:userId" component={UserView} />
+          <Route path="/addUser" component={AddUserForm} />
         </div>
 
 
