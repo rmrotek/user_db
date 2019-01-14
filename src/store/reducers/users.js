@@ -75,9 +75,9 @@ export function requestUserAdd(data) {
     return fetch(`http://localhost:3001/users/`, {
       method: 'POST',
       body: JSON.stringify({
-        name: "Leanne Gam",
-        username: "Bret",
-        email: "Sincere@april.biz",
+        name: data.name,
+        username: data.username,
+        email: data.email,
         address: {
           street: "Kulas Light",
           suite: "Apt. 556",

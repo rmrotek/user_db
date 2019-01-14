@@ -32,7 +32,7 @@ let AddUserForm = ({ history, requestUserAdd }) => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          requestUserAdd();
+          requestUserAdd(values);
           setSubmitting(false);
         }, 400);
       }}
