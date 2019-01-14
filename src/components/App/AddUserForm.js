@@ -2,8 +2,13 @@ import React from 'react';
 import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import { Formik } from 'formik';
 
+import { connect } from 'react-redux'
+import { requestUserAdd } from "../../store/reducers/users"
 
-let AddUserForm = ({ history }) => {
+
+
+
+let AddUserForm = ({ history, requestUserAdd }) => {
   return (
     <Formik
       initialValues={{ name: '', username: '', email: '', }}
@@ -27,7 +32,7 @@ let AddUserForm = ({ history }) => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          alert(JSON.stringify(values, null, 2));
+          requestUserAdd();
           setSubmitting(false);
         }, 400);
       }}
@@ -122,5 +127,18 @@ let AddUserForm = ({ history }) => {
   )
 
 };
+
+const mapStateToProps = (state) => ({
+  //
+
+})
+
+const mapDispatchToProps = {
+  
+  requestUserAdd
+};
+
+
+AddUserForm = connect(mapStateToProps, mapDispatchToProps)(AddUserForm)
 
 export default AddUserForm;
