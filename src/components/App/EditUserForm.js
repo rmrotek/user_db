@@ -3,13 +3,13 @@ import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import { Formik, Form, Field } from 'formik';
 
 import { connect } from 'react-redux'
-import { requestUserAdd } from "../../store/reducers/users"
+import { requestUserEdit } from "../../store/reducers/users"
 import { Link } from 'react-router-dom';
 
 
 
 
-let EditUserForm = ({ users, match, requestUserAdd, history }) => {
+let EditUserForm = ({ users, match, requestUserEdit, history }) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find(user => user.id === userId)
 
@@ -52,7 +52,7 @@ let EditUserForm = ({ users, match, requestUserAdd, history }) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            requestUserAdd(values).then(() => history.push('/'));
+            requestUserEdit(values, user.id).then(() => history.goBack());
             setSubmitting(false);
           }, 400);
         }}
@@ -187,7 +187,7 @@ let EditUserForm = ({ users, match, requestUserAdd, history }) => {
                     <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                    <Button component={Link} to={`/users/${userId}/edit`} fullWidth variant='contained' color='primary'>Edit User</Button>
+                    <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'>Edit User</Button>
                   </Grid>
                   <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
                     <Button disabled fullWidth variant='contained' color='secondary'>Delete User</Button>
@@ -221,7 +221,7 @@ const mapStateToProps = (state) => ({
 })
 
 const mapDispatchToProps = {
-  requestUserAdd
+  requestUserEdit
 
 };
 

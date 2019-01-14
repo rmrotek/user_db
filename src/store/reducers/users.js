@@ -105,7 +105,35 @@ export function requestUserAdd(data) {
       .then(() => dispatch(fetchUsers()))
   }
 }
-
+export function requestUserEdit(data, userId) {
+  return function (dispatch) {
+    return fetch(`http://localhost:3001/users/${userId}`, {
+      method: 'PATCH',
+      body: JSON.stringify({
+        name: data.name,
+        username: data.username,
+        email: data.email,
+        address: {
+          street: data.street,
+          suite: data.suite,
+          city: data.city,
+          zipcode: data.zipcode,
+        },
+        phone: data.phone,
+        website: data.website,
+        company: {
+          name: data.companyName,
+          catchPhrase: data.companyCatchPhrase,
+          bs: data.companyBs
+        }
+      }),
+      headers: {
+        "Content-type": "application/json; charset=UTF-8"
+      }
+    })
+      .then(() => dispatch(fetchUsers()))
+  }
+}
 
 
 
