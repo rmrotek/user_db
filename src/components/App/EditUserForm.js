@@ -65,14 +65,14 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
               <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ background: 'lightgrey' }}>
                 <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
                   <Typography variant='h4' align='center' >
-                    User Profile Page
+                    {'User Profile Page'}
               </Typography>
 
                 </Grid>
                 <Grid item xl={6} lg={6} md={6} sm={11} xs={11} >
 
                   <Typography variant='h5' >
-                    Personal Data
+                    {'Personal Data'}
               </Typography>
                   <Typography variant='h6' >
                     <Field
@@ -118,7 +118,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                 <Grid item xl={5} lg={5} md={5} sm={11} xs={11}>
 
                   <Typography variant='h5' >
-                    Address
+                    {'Address'}
               </Typography>
                   <Field
                     name="street"
@@ -156,7 +156,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                 <Grid item xl={6} lg={6} md={6} sm={11} xs={11}>
 
                   <Typography variant='h5' >
-                    Company
+                    {'Company'}
               </Typography>
                   <Typography variant='h6' >
                     <Field
