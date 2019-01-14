@@ -69,7 +69,7 @@ let UserView = ({ users, match, history, requestUserDelete }) => {
 
         </Grid>
 
-        <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
+        <Grid item xl={6} lg={6} md={6} sm={11} xs={11}>
 
           <Typography variant='h5' >
             Company

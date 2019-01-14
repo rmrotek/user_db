@@ -4,6 +4,7 @@ import { Formik, Form, Field } from 'formik';
 
 import { connect } from 'react-redux'
 import { requestUserAdd } from "../../store/reducers/users"
+import { Link } from 'react-router-dom';
 
 
 
@@ -16,100 +17,188 @@ let EditUserForm = ({ users, match, requestUserAdd, history }) => {
 
   if (user) {
     editUserView = (
-    <Formik
-      initialValues={{ name: user.name, username: user.username, email: user.email, }}
-      validate={values => {
-        let errors = {};
-        if (!values.email) {
-          errors.email = 'Required';
-        } else if (
-          !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
-        ) {
-          errors.email = 'Invalid email address';
-        }
-        if (!values.name) {
-          errors.name = 'Required';
-        }
-        if (!values.username) {
-          errors.username = 'Required';
-        }
+      <Formik
+        initialValues={{
+          name: user.name,
+          username: user.username,
+          email: user.email,
+          phone: user.phone,
+          website: user.website,
+          street: user.address.street,
+          suite: user.address.suite,
+          city: user.address.city,
+          zipcode: user.address.zipcode,
+          companyName: user.company.name,
+          companyCatchPhrase: user.company.catchPhrase,
+          companyBs: user.company.bs
+        }}
+        validate={values => {
+          let errors = {};
+          if (!values.email) {
+            errors.email = 'Required';
+          } else if (
+            !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(values.email)
+          ) {
+            errors.email = 'Invalid email address';
+          }
+          if (!values.name) {
+            errors.name = 'Required';
+          }
+          if (!values.username) {
+            errors.username = 'Required';
+          }
 
-        return errors;
-      }}
-      onSubmit={(values, { setSubmitting }) => {
-        setTimeout(() => {
-          requestUserAdd(values).then(() => history.push('/'));
-          setSubmitting(false);
-        }, 400);
-      }}
-    >
-      {({ isSubmitting }) => (
-        <Form >
-          <Grid container justify='center'>
+          return errors;
+        }}
+        onSubmit={(values, { setSubmitting }) => {
+          setTimeout(() => {
+            requestUserAdd(values).then(() => history.push('/'));
+            setSubmitting(false);
+          }, 400);
+        }}
+      >
+        {({ isSubmitting }) => (
+          <Form >
+            <Grid container justify='center'>
+              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ background: 'lightgrey' }}>
+                <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
+                  <Typography variant='h4' align='center' >
+                    User Profile Page
+              </Typography>
 
-            <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ background: 'lightgrey' }}>
-              <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
-                <Typography variant='h4' align='center' >
-                  {'Edit a user'}
-                </Typography>
-              </Grid>
-              <Grid item xl={6} lg={12} md={12} sm={11} xs={11} >
-
-                <Typography variant='h6' align='center' >
-                  <Field
-                    
-                    type="text"
-                    name="name"
-                    label='name'
-                  />
-
-                </Typography>
-
-                <Typography variant='h6' align='center' >
-                  <Field                  
-                    name="username"
-                    label='username'
-                    render={({ field, form: { isSubmitting } }) => (
-                      <TextField {...field} disabled={isSubmitting} type="text" placeholder="username" />
-                    )}
-                  >
-                  
-                  </Field>
-                </Typography>
-
-                <Typography variant='h6' align='center' >
-                  <Field
-                    name="email"
-                    label='email'
-                    render={({ field, form: { isSubmitting } }) => (
-                      <TextField {...field} disabled={isSubmitting} type="email" />
-                    )}
-                  />
-                </Typography>
-
-                <Typography variant='h6' align='center' color='secondary'>
-                  {'Please fill in the fields, all are required'}
-                </Typography>
-
-                <Typography variant='h6' align='center' color='primary'>
-                  {'Rest will be filled with placeholders, You can edit them later.'}
-                </Typography>
-
-              </Grid>
-              <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
-                <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                  <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
                 </Grid>
-                <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                  <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'>Add User</Button>
+                <Grid item xl={6} lg={6} md={6} sm={11} xs={11} >
+
+                  <Typography variant='h5' >
+                    Personal Data
+              </Typography>
+                  <Typography variant='h6' >
+                    <Field
+                      name="name"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='name' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+                  <Typography variant='h6' >
+                    <Field
+                      name="username"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='username' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+                  <Typography variant='h6' >
+                    <Field
+                      name="email"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='email' margin='dense' variant='outlined' type="email" fullWidth />
+                      )}
+                    />
+                  </Typography>
+                  <Field
+                    name="phone"
+                    render={({ field, form: { isSubmitting } }) => (
+                      <TextField {...field} disabled={isSubmitting} label='phone' margin='dense' variant='outlined' type="text" fullWidth />
+                    )}
+                  />
+                  <Typography variant='h6' >
+                    <Field
+                      name="website"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='website' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+
+                </Grid>
+
+                <Grid item xl={5} lg={5} md={5} sm={11} xs={11}>
+
+                  <Typography variant='h5' >
+                    Address
+              </Typography>
+                  <Field
+                    name="street"
+                    render={({ field, form: { isSubmitting } }) => (
+                      <TextField {...field} disabled={isSubmitting} label='street' margin='dense' variant='outlined' type="text" fullWidth />
+                    )}
+                  />
+                  <Typography variant='h6' >
+                    <Field
+                      name="suite"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='suite' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+                  <Typography variant='h6' >
+                    <Field
+                      name="city"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='city' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+                  <Typography variant='h6' >
+                    <Field
+                      name="zipcode"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='zipcode' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+
+                </Grid>
+
+                <Grid item xl={6} lg={6} md={6} sm={11} xs={11}>
+
+                  <Typography variant='h5' >
+                    Company
+              </Typography>
+                  <Typography variant='h6' >
+                    <Field
+                      name="companyName"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='name' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+                  <Typography variant='h6' >
+                    <Field
+                      name="companyCatchPhrase"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='catch phrase' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+                  <Typography variant='h6' >
+                    <Field
+                      name="companyBs"
+                      render={({ field, form: { isSubmitting } }) => (
+                        <TextField {...field} disabled={isSubmitting} label='BS' margin='dense' variant='outlined' type="text" fullWidth />
+                      )}
+                    />
+                  </Typography>
+
+                </Grid>
+                <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
+                  <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+                    <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
+                  </Grid>
+                  <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+                    <Button component={Link} to={`/users/${userId}/edit`} fullWidth variant='contained' color='primary'>Edit User</Button>
+                  </Grid>
+                  <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
+                    <Button disabled fullWidth variant='contained' color='secondary'>Delete User</Button>
+                  </Grid>
                 </Grid>
 
               </Grid>
             </Grid>
-          </Grid>
-        </Form>
-      )}
-    </Formik>)
+          </Form>
+        )}
+      </Formik>)
   } else {
     editUserView = (
       <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
@@ -133,7 +222,7 @@ const mapStateToProps = (state) => ({
 
 const mapDispatchToProps = {
   requestUserAdd
-  
+
 };
 
 
