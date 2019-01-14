@@ -184,7 +184,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                 </Grid>
                 <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
                   <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                    <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
+                    <Button onClick={() => history.goBack()} fullWidth variant='outlined' color='primary' >Go Back</Button>
                   </Grid>
                   <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
                     <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'>Edit User</Button>
