@@ -66,14 +66,13 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                 <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
                   <Typography variant='h4' align='center' >
                     {'User Profile Page'}
-              </Typography>
-
+                  </Typography>
                 </Grid>
-                <Grid item xl={6} lg={6} md={6} sm={11} xs={11} >
 
+                <Grid item xl={6} lg={6} md={6} sm={11} xs={11} >
                   <Typography variant='h5' >
                     {'Personal Data'}
-              </Typography>
+                  </Typography>
                   <Typography variant='h6' >
                     <Field
                       name="name"
@@ -112,14 +111,12 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                       )}
                     />
                   </Typography>
-
                 </Grid>
 
                 <Grid item xl={5} lg={5} md={5} sm={11} xs={11}>
-
                   <Typography variant='h5' >
                     {'Address'}
-              </Typography>
+                  </Typography>
                   <Field
                     name="street"
                     render={({ field, form: { isSubmitting } }) => (
@@ -150,14 +147,12 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                       )}
                     />
                   </Typography>
-
                 </Grid>
 
                 <Grid item xl={6} lg={6} md={6} sm={11} xs={11}>
-
                   <Typography variant='h5' >
                     {'Company'}
-              </Typography>
+                  </Typography>
                   <Typography variant='h6' >
                     <Field
                       name="companyName"
@@ -182,8 +177,8 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                       )}
                     />
                   </Typography>
-
                 </Grid>
+
                 <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
                   <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
                     <Button onClick={() => history.goBack()} fullWidth variant='outlined' color='primary' >Go Back</Button>
@@ -195,7 +190,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                     <Button disabled fullWidth variant='contained' color='secondary'>Delete User</Button>
                   </Grid>
                 </Grid>
-
+                
               </Grid>
             </Grid>
           </Form>
@@ -214,7 +209,6 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
       {editUserView}
     </Grid>
   )
-
 };
 
 const mapStateToProps = (state) => ({
