@@ -7,6 +7,7 @@ import UserView from './UserView';
 
 import { connect } from 'react-redux'
 import AddUserForm from './AddUserForm';
+import EditUserForm from './EditUserForm';
 
 
 class App extends Component {
@@ -17,7 +18,8 @@ class App extends Component {
         <div>
           
           <Route exact path="/" component={UserListView} />
-          <Route path="/users/:userId" component={UserView} />
+          <Route exact path="/users/:userId" component={UserView} />
+          <Route path="/users/:userId/edit" component={EditUserForm} />
           <Route path="/addUser" component={AddUserForm} />
         </div>
 

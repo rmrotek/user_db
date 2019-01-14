@@ -8,10 +8,16 @@ import { requestUserAdd } from "../../store/reducers/users"
 
 
 
-let AddUserForm = ({ history, requestUserAdd }) => {
-  return (
+let EditUserForm = ({ users, match, requestUserAdd, history }) => {
+  const userId = parseInt(match.params.userId);
+  const user = users && users.find(user => user.id === userId)
+
+  let editUserView = '';
+
+  if (user) {
+    editUserView = (
     <Formik
-      initialValues={{ name: '', username: '', email: '', }}
+      initialValues={{ name: user.name, username: user.username, email: user.email, }}
       validate={values => {
         let errors = {};
         if (!values.email) {
@@ -44,35 +50,39 @@ let AddUserForm = ({ history, requestUserAdd }) => {
             <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ background: 'lightgrey' }}>
               <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
                 <Typography variant='h4' align='center' >
-                  {'Add a User to Database'}
+                  {'Edit a user'}
                 </Typography>
               </Grid>
               <Grid item xl={6} lg={12} md={12} sm={11} xs={11} >
 
                 <Typography variant='h6' align='center' >
                   <Field
+                    
+                    type="text"
                     name="name"
-                    render={({ field, form: { isSubmitting } }) => (
-                      <TextField {...field} disabled={isSubmitting} label='name' type="text" />
-                    )}
+                    label='name'
                   />
 
                 </Typography>
 
                 <Typography variant='h6' align='center' >
-                  <Field
+                  <Field                  
                     name="username"
+                    label='username'
                     render={({ field, form: { isSubmitting } }) => (
-                      <TextField {...field} disabled={isSubmitting} label='username' type="text" />
+                      <TextField {...field} disabled={isSubmitting} type="text" placeholder="username" />
                     )}
-                  />
+                  >
+                  
+                  </Field>
                 </Typography>
 
                 <Typography variant='h6' align='center' >
                   <Field
                     name="email"
+                    label='email'
                     render={({ field, form: { isSubmitting } }) => (
-                      <TextField {...field} disabled={isSubmitting} label='email' type="email" />
+                      <TextField {...field} disabled={isSubmitting} type="email" />
                     )}
                   />
                 </Typography>
@@ -99,22 +109,34 @@ let AddUserForm = ({ history, requestUserAdd }) => {
           </Grid>
         </Form>
       )}
-    </Formik>
+    </Formik>)
+  } else {
+    editUserView = (
+      <Grid item xs={12} sm={12} md={12} lg={12} xl={12}>
+        loading
+      </Grid>
+    )
+  }
+
+  return (
+    <Grid container justify='center' >
+      {editUserView}
+    </Grid>
   )
 
 };
 
 const mapStateToProps = (state) => ({
-  //
+  users: state.usersData.users,
 
 })
 
 const mapDispatchToProps = {
-
   requestUserAdd
+  
 };
 
 
-AddUserForm = connect(mapStateToProps, mapDispatchToProps)(AddUserForm)
+EditUserForm = connect(mapStateToProps, mapDispatchToProps)(EditUserForm)
 
-export default AddUserForm;
+export default EditUserForm;
