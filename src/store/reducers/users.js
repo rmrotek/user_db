@@ -65,7 +65,9 @@ export function fetchUsers() {
 
 export function requestUserDelete(userId) {
   return function (dispatch) {
-    return fetch(`http://localhost:3001/users/${userId}`, { method: 'DELETE' })
+    return fetch(`http://localhost:3001/users/${userId}`, {
+      method: 'DELETE'
+    })
       .then(() => dispatch(fetchUsers()))
   }
 }
