@@ -105,6 +105,7 @@ export function requestUserAdd(data) {
       .then(() => dispatch(fetchUsers()))
   }
 }
+
 export function requestUserEdit(data, userId) {
   return function (dispatch) {
     return fetch(`http://localhost:3001/users/${userId}`, {
@@ -139,12 +140,8 @@ export function requestUserEdit(data, userId) {
   }
 }
 
-
-
-
 const reducer = (state = {}, action) => {
   switch (action.type) {
-
     case REQUEST_USERS:
       return { ...state, loading: true };
     case RECEIVE_USERS:
