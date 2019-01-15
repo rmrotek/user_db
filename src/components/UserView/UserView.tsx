@@ -11,7 +11,7 @@ interface MatchParamsProps {
   userId: string
 }
 
-interface MatchProps {
+export interface MatchProps {
   params: MatchParamsProps
 }
 

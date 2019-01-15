@@ -1,15 +1,41 @@
 import React from 'react';
 import { Grid, Typography, Button, TextField } from '@material-ui/core';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FieldProps } from 'formik';
 
 import { connect } from 'react-redux'
 import { requestUserEdit } from "../../services"
+import { MatchProps } from '../UserView/UserView';
+import { IUsers } from '../../store/reducers/users';
 
-let EditUserForm = ({ users, match, requestUserEdit, history }) => {
+interface Props {
+  users: IUsers[];
+  match: MatchProps;
+  history: any;
+  requestUserEdit: any;
+}
+
+interface FormValues {
+  name: string,
+  username: string,
+  email: string,
+  phone: string,
+  website: string,
+  street: string,
+  suite: string,
+  city: string,
+  zipcode: string,
+  companyName: string,
+  companyCatchPhrase: string,
+  companyBs: string,
+  geoLat: string,
+  geoLng: string
+}
+
+let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find(user => user.id === userId)
 
-  let editUserView = '';
+  let editUserView;
 
   if (user) {
     editUserView = (
@@ -30,8 +56,8 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
           geoLat: user.address.geo.lat,
           geoLng: user.address.geo.lng
         }}
-        validate={values => {
-          let errors = {};
+        validate={(values: FormValues) => {
+          let errors: any;
           if (!values.email) {
             errors.email = 'Required';
           } else if (
@@ -72,7 +98,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="name"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='name' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -80,7 +106,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="username"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='username' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -88,21 +114,21 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="email"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='email' margin='dense' variant='outlined' type="email" fullWidth />
                       )}
                     />
                   </Typography>
                   <Field
                     name="phone"
-                    render={({ field, form: { isSubmitting } }) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='phone' margin='dense' variant='outlined' type="text" fullWidth />
                     )}
                   />
                   <Typography variant='h6' >
                     <Field
                       name="website"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='website' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -115,14 +141,14 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   </Typography>
                   <Field
                     name="street"
-                    render={({ field, form: { isSubmitting } }) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='street' margin='dense' variant='outlined' type="text" fullWidth />
                     )}
                   />
                   <Typography variant='h6' >
                     <Field
                       name="suite"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='suite' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -130,7 +156,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="city"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='city' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -138,7 +164,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="zipcode"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='zipcode' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -152,7 +178,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyName"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='name' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -160,7 +186,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyCatchPhrase"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='catch phrase' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -168,7 +194,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyBs"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='BS' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -186,7 +212,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                     <Button disabled fullWidth variant='contained' color='secondary'>Delete User</Button>
                   </Grid>
                 </Grid>
-                
+
               </Grid>
             </Grid>
           </Form>
@@ -207,7 +233,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
   )
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   users: state.usersData.users,
 
 })
@@ -217,7 +243,4 @@ const mapDispatchToProps = {
 
 };
 
-
-EditUserForm = connect(mapStateToProps, mapDispatchToProps)(EditUserForm)
-
-export default EditUserForm;
+export default connect(mapStateToProps, mapDispatchToProps)(EditUserForm);
