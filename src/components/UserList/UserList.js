@@ -5,7 +5,7 @@ import UserItem from '../UserItem/UserItem';
 
 import { List } from '@material-ui/core';
 
-let UserList = ({ users, loading }) => {
+let UserList = ({ users }) => {
   
   let usersList = '';
   if (users) {
@@ -16,8 +16,7 @@ let UserList = ({ users, loading }) => {
       </List>
       
     ))
-  }
-  if (loading) {
+  } else {
     usersList = <h3 className="loading-indicator">Loading ...</h3>
   }
   return (
@@ -27,8 +26,7 @@ let UserList = ({ users, loading }) => {
   )
 }
 const mapStateToProps = (state) => ({
-  users: state.usersData.users,
-  loading: state.usersData.loading
+  users: state.usersData.users  
 })
 
 const mapDispatchToProps = {

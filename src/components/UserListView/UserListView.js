@@ -7,7 +7,7 @@ import { fetchUsers } from "../../services";
 import { Link } from 'react-router-dom';
 
 let UserListView = ({ fetchUsers }) => {
-
+  fetchUsers()
   return (
     <Grid container justify='center' >
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
