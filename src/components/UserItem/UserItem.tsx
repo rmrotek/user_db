@@ -4,7 +4,11 @@ import { AccountBox } from '@material-ui/icons'
 
 import { Link } from "react-router-dom";
 
-let UserItem = ({ user }) => (
+interface Props {
+   user: any
+}
+
+let UserItem = ({ user }: Props) => (
 
    <ListItem alignItems='flex-start' divider>
       <ListItemText
