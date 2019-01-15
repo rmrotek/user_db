@@ -20,6 +20,7 @@
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
     "teedux": "^2.1.5",
+    "typesafe-actions": "^3.0.0",
     "typescript": "^3.2.2"
   },
   "scripts": {

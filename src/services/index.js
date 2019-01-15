@@ -1,5 +1,4 @@
-import { requestUsers } from "../store/reducers/users"
-import { receivedUsers } from "../store/reducers/users"
+import { receivedUsers } from "../store/reducers/actions"
 
 
 export function requestUserDelete(userId) {
@@ -14,7 +13,6 @@ export function requestUserDelete(userId) {
 
 export function fetchUsers() {
   return function (dispatch) {
-    dispatch(requestUsers());
     return fetch(`http://localhost:3001/users`)
       .then(
         response => response.json(),

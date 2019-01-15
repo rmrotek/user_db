@@ -1,0 +1,1 @@
+export const RECEIVE_USERS = `@prefix/RECEIVE_USERS`;
