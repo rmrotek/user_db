@@ -3,7 +3,7 @@ import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import { Formik, Form, Field } from 'formik';
 
 import { connect } from 'react-redux'
-import { requestUserEdit } from "../../store/reducers/users"
+import { requestUserEdit } from "../../services"
 
 let EditUserForm = ({ users, match, requestUserEdit, history }) => {
   const userId = parseInt(match.params.userId);

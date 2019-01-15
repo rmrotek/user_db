@@ -3,7 +3,9 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import thunk from 'redux-thunk';
 
-import userReducer, { fetchUsers } from "./reducers/users";
+import userReducer from "./reducers/users";
+import { fetchUsers } from "../services"
+
 
 
 

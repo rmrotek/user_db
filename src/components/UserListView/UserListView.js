@@ -1,9 +1,9 @@
 import React from 'react';
 import { Grid, Typography, Button } from '@material-ui/core'
-import UserList from './UserList';
+import UserList from '../UserList/UserList';
 
 import { connect } from 'react-redux'
-import { fetchUsers } from "../../store/reducers/users";
+import { fetchUsers } from "../../services";
 import { Link } from 'react-router-dom';
 
 let UserListView = ({ fetchUsers }) => {

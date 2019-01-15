@@ -3,7 +3,7 @@ import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import { Formik, Form, Field } from 'formik';
 
 import { connect } from 'react-redux'
-import { requestUserAdd } from "../../store/reducers/users"
+import { requestUserAdd } from "../../services"
 
 
 

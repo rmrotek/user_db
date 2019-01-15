@@ -1,13 +1,13 @@
 import React, { Component } from 'react';
 import { BrowserRouter as Router, Route} from 'react-router-dom';
 
-import UserListView from './UserListView';
+import UserListView from '../UserListView/UserListView';
 
-import UserView from './UserView';
+import UserView from '../UserView/UserView';
 
 import { connect } from 'react-redux'
-import AddUserForm from './AddUserForm';
-import EditUserForm from './EditUserForm';
+import AddUserForm from '../AddUserForm/AddUserForm';
+import EditUserForm from '../EditUserForm/EditUserForm';
 
 
 class App extends Component {

@@ -1,6 +1,6 @@
 import React from 'react'
 import { connect } from 'react-redux'
-import UserItem from './UserItem';
+import UserItem from '../UserItem/UserItem';
 
 
 import { List } from '@material-ui/core';
