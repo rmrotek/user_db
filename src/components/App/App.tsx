@@ -10,8 +10,8 @@ import AddUserForm from '../AddUserForm/AddUserForm';
 import EditUserForm from '../EditUserForm/EditUserForm';
 import { fetchUsers } from "../../services";
 
-
-class App extends Component<any> {
+type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
+class App extends Component<TProps> {
 
   componentWillMount() {
     this.props.fetchUsers()
@@ -39,4 +39,6 @@ const mapDispatchToProps = {
   fetchUsers
 };
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+const Connectable = connect(mapStateToProps, mapDispatchToProps)
+
+export default Connectable(App);
