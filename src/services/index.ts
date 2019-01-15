@@ -1,8 +1,9 @@
 import { receivedUsers } from "../store/reducers/actions"
+import { IFormValues } from "../components/EditUserForm/EditUserForm";
 
 
-export function requestUserDelete(userId) {
-  return function (dispatch) {
+export function requestUserDelete(userId: number) {
+  return function (dispatch: any) {
     return fetch(`http://localhost:3001/users/${userId}`, {
       method: 'DELETE'
     })
@@ -12,7 +13,7 @@ export function requestUserDelete(userId) {
 
 
 export function fetchUsers() {
-  return function (dispatch) {
+  return function (dispatch: any) {
     return fetch(`http://localhost:3001/users`)
       .then(
         response => response.json(),
@@ -25,8 +26,8 @@ export function fetchUsers() {
   };
 }
 
-export function requestUserAdd(data) {
-  return function (dispatch) {
+export function requestUserAdd(data: IFormValues) {
+  return function (dispatch: any) {
     return fetch(`http://localhost:3001/users/`, {
       method: 'POST',
       body: JSON.stringify({
@@ -59,8 +60,10 @@ export function requestUserAdd(data) {
   }
 }
 
-export function requestUserEdit(data, userId) {
-  return function (dispatch) {
+
+
+export function requestUserEdit(data: IFormValues, userId: number ) {
+  return function (dispatch: any) {
     return fetch(`http://localhost:3001/users/${userId}`, {
       method: 'PATCH',
       body: JSON.stringify({

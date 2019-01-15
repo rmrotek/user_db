@@ -14,7 +14,7 @@ interface Props {
   requestUserEdit: any;
 }
 
-interface FormValues {
+export interface IFormValues {
   name: string,
   username: string,
   email: string,
@@ -56,7 +56,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
           geoLat: user.address.geo.lat,
           geoLng: user.address.geo.lng
         }}
-        validate={(values: FormValues) => {
+        validate={(values: IFormValues) => {
           let errors: any;
           if (!values.email) {
             errors.email = 'Required';
@@ -98,7 +98,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   <Typography variant='h6' >
                     <Field
                       name="name"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='name' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -106,7 +106,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   <Typography variant='h6' >
                     <Field
                       name="username"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='username' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -114,21 +114,21 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   <Typography variant='h6' >
                     <Field
                       name="email"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='email' margin='dense' variant='outlined' type="email" fullWidth />
                       )}
                     />
                   </Typography>
                   <Field
                     name="phone"
-                    render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='phone' margin='dense' variant='outlined' type="text" fullWidth />
                     )}
                   />
                   <Typography variant='h6' >
                     <Field
                       name="website"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='website' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -141,14 +141,14 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   </Typography>
                   <Field
                     name="street"
-                    render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='street' margin='dense' variant='outlined' type="text" fullWidth />
                     )}
                   />
                   <Typography variant='h6' >
                     <Field
                       name="suite"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='suite' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -156,7 +156,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   <Typography variant='h6' >
                     <Field
                       name="city"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='city' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -164,7 +164,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   <Typography variant='h6' >
                     <Field
                       name="zipcode"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='zipcode' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -178,7 +178,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyName"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='name' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -186,7 +186,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyCatchPhrase"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='catch phrase' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -194,7 +194,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyBs"
-                      render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='BS' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
