@@ -1,9 +1,14 @@
 import { receivedUsers } from "../store/reducers/actions"
 import { IFormValues } from "../components/EditUserForm/EditUserForm";
+import { ThunkAction } from "redux-thunk";
+import { Action } from "redux";
 
 
-export function requestUserDelete(userId: number) {
-  return function (dispatch: any) {
+
+export function requestUserDelete(
+  userId: number
+): ThunkAction<void, null, null, Action> {
+  return function (dispatch) {
     return fetch(`http://localhost:3001/users/${userId}`, {
       method: 'DELETE'
     })
@@ -12,8 +17,8 @@ export function requestUserDelete(userId: number) {
 }
 
 
-export function fetchUsers() {
-  return function (dispatch: any) {
+export function fetchUsers(): ThunkAction<void, null, null, Action> {
+  return function (dispatch) {
     return fetch(`http://localhost:3001/users`)
       .then(
         response => response.json(),
@@ -26,8 +31,10 @@ export function fetchUsers() {
   };
 }
 
-export function requestUserAdd(data: IFormValues) {
-  return function (dispatch: any) {
+export function requestUserAdd(
+  data: IFormValues
+): ThunkAction<void, null, null, Action> {
+  return function (dispatch) {
     return fetch(`http://localhost:3001/users/`, {
       method: 'POST',
       body: JSON.stringify({
@@ -62,8 +69,11 @@ export function requestUserAdd(data: IFormValues) {
 
 
 
-export function requestUserEdit(data: IFormValues, userId: number ) {
-  return function (dispatch: any) {
+export function requestUserEdit(
+  data: IFormValues,
+  userId: number
+): ThunkAction<void, null, null, Action> {
+  return function (dispatch) {
     return fetch(`http://localhost:3001/users/${userId}`, {
       method: 'PATCH',
       body: JSON.stringify({
