@@ -5,10 +5,13 @@ import { Formik, Form, Field } from 'formik';
 import { connect } from 'react-redux'
 import { requestUserAdd } from "../../services"
 
+interface Props {
+  history: any;
+  requestUserAdd: any
+}
 
 
-
-let AddUserForm = ({ history, requestUserAdd }) => {
+let AddUserForm = ({ history, requestUserAdd }: Props) => {
   return (
     <Formik
       initialValues={{ name: '', username: '', email: '', }}
