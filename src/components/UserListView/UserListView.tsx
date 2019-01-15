@@ -5,12 +5,15 @@ import UserList from '../UserList/UserList';
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
 
-let UserListView = ({ fetchUsers }) => {
+const CustomLink = (props: any) => <Link to={`/addUser`} {...props}/>
+
+let UserListView = ({ fetchUsers }: any) => {
   return (
-    <Grid container justify='center' >
+    
+    <Grid container justify='center'>
       <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
         <Button onClick={() => fetchUsers()} variant='contained' color='primary'>Refresh List</Button>
-        <Button component={Link} to={'/addUser'} variant='contained' color='primary'>Add New User</Button>
+        <Button component={CustomLink} variant='contained' color='primary'>Add New User</Button>
         <Typography variant='h4' align='center' paragraph>
           List of users:
           </Typography>
@@ -19,18 +22,17 @@ let UserListView = ({ fetchUsers }) => {
         <UserList />
       </Grid>
     </Grid>
+    
   );
 
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
   //for later
 })
 
 const mapDispatchToProps = {
 };
 
-UserListView = connect(mapStateToProps, mapDispatchToProps)(UserListView)
-
-export default UserListView;
+export default connect(mapStateToProps, mapDispatchToProps)(UserListView);
 
