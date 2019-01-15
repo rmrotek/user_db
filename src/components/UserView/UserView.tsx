@@ -5,16 +5,31 @@ import { Grid, Typography, Button } from '@material-ui/core';
 
 import { requestUserDelete } from "../../services"
 import { Link } from 'react-router-dom';
+import { IUsers } from '../../store/reducers/users';
+
+interface MatchParamsProps {
+  userId: string
+}
+
+interface MatchProps {
+  params: MatchParamsProps
+}
+
+interface Props {
+  users: IUsers[];
+  match: MatchProps;
+  history: any;
+  requestUserDelete: any
+}
+
+export const CustomLink = (props: any) => <Link to={props.id} {...props}/>
 
 
 
-
-
-
-let UserView = ({ users, match, history, requestUserDelete }) => {
+let UserView = ({ users, match, history, requestUserDelete }: Props) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find(user => user.id === userId)
-  let userView = '';
+  let userView;
 
   if (user) {
     userView = (
@@ -89,7 +104,7 @@ let UserView = ({ users, match, history, requestUserDelete }) => {
             <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
           </Grid>
           <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-            <Button component={Link} to={`/users/${userId}/edit`} fullWidth variant='contained' color='primary'>Edit User</Button>
+            <Button component={CustomLink} id={`/users/${userId}/edit`} fullWidth variant='contained' color='primary'>Edit User</Button>
           </Grid>
           <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
             <Button onClick={() => requestUserDelete(user.id).then(() => history.push('/'))} fullWidth variant='contained' color='secondary'>Delete User</Button>
@@ -116,7 +131,7 @@ let UserView = ({ users, match, history, requestUserDelete }) => {
 
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   users: state.usersData.users,
 
 })
@@ -126,7 +141,6 @@ const mapDispatchToProps = {
   requestUserDelete
 };
 
-UserView = connect(mapStateToProps, mapDispatchToProps)(UserView)
 
-export default UserView;
+export default connect(mapStateToProps, mapDispatchToProps)(UserView);
 
