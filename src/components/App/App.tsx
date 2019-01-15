@@ -11,7 +11,7 @@ import EditUserForm from '../EditUserForm/EditUserForm';
 import { fetchUsers } from "../../services";
 
 
-class App extends Component {
+class App extends Component<any> {
 
   componentWillMount() {
     this.props.fetchUsers()
@@ -31,7 +31,7 @@ class App extends Component {
   }
 }
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
   //for later
 })
 
@@ -39,6 +39,4 @@ const mapDispatchToProps = {
   fetchUsers
 };
 
-App = connect(mapStateToProps, mapDispatchToProps)(App)
-
-export default App;
+export default connect(mapStateToProps, mapDispatchToProps)(App);
