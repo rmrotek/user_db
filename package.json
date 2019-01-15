@@ -19,6 +19,7 @@
     "react-scripts": "2.1.3",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
+    "teedux": "^2.1.5",
     "typescript": "^3.2.2"
   },
   "scripts": {
