@@ -3,8 +3,10 @@ import { ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@ma
 import { AccountBox } from '@material-ui/icons'
 
 import {CustomLink} from '../CustomLink/CustomLink'
+
+import {IUsers} from '../../store/reducers/users'
 interface Props {
-   user: any
+   user: IUsers
 }
 
 
@@ -15,7 +17,7 @@ let UserItem = ({ user }: Props) => (
          primary={user.name}
          secondary={user.email} />
       <ListItemSecondaryAction >
-         <IconButton color='primary' aria-label="Details" component={CustomLink} id={user.id}>
+         <IconButton color='primary' aria-label="Details" component={CustomLink} id={`${user.id}`}>
             <AccountBox />
          </IconButton>
       </ListItemSecondaryAction>
