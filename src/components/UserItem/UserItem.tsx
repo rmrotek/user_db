@@ -7,15 +7,17 @@ import { Link } from "react-router-dom";
 interface Props {
    user: any
 }
+const MyLink = (props: any) => <Link to={`/users/${props.id}`} {...props}/>
+
 
 let UserItem = ({ user }: Props) => (
 
-   <ListItem alignItems='flex-start' divider>
+   <ListItem  divider>
       <ListItemText
          primary={user.name}
          secondary={user.email} />
       <ListItemSecondaryAction >
-         <IconButton color='primary' aria-label="Details" component={Link} to={`/users/${user.id}`}>
+         <IconButton color='primary' aria-label="Details" component={MyLink} id={user.id}>
             <AccountBox />
          </IconButton>
       </ListItemSecondaryAction>
