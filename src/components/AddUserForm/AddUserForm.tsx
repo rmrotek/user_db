@@ -1,13 +1,19 @@
 import React from 'react';
 import { Grid, Typography, Button, TextField } from '@material-ui/core';
-import { Formik, Form, Field } from 'formik';
+import { Formik, Form, Field, FormikErrors, FormikProps, FieldProps } from 'formik';
 
 import { connect } from 'react-redux'
 import { requestUserAdd } from "../../services"
 
 interface Props {
   history: any;
-  requestUserAdd: any
+  requestUserAdd: any;
+}
+
+interface FormValues {
+  name: string;
+  username: string;
+  email: string;
 }
 
 
@@ -15,8 +21,8 @@ let AddUserForm = ({ history, requestUserAdd }: Props) => {
   return (
     <Formik
       initialValues={{ name: '', username: '', email: '', }}
-      validate={values => {
-        let errors = {};
+      validate={(values: FormValues) => {
+        let errors: any
         if (!values.email) {
           errors.email = 'Required';
         } else if (
@@ -55,7 +61,7 @@ let AddUserForm = ({ history, requestUserAdd }: Props) => {
                 <Typography variant='h6' align='center' >
                   <Field
                     name="name"
-                    render={({ field, form: { isSubmitting } }) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='name' type="text" />
                     )}
                   />
@@ -65,7 +71,7 @@ let AddUserForm = ({ history, requestUserAdd }: Props) => {
                 <Typography variant='h6' align='center' >
                   <Field
                     name="username"
-                    render={({ field, form: { isSubmitting } }) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='username' type="text" />
                     )}
                   />
@@ -74,7 +80,7 @@ let AddUserForm = ({ history, requestUserAdd }: Props) => {
                 <Typography variant='h6' align='center' >
                   <Field
                     name="email"
-                    render={({ field, form: { isSubmitting } }) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='email' type="email" />
                     )}
                   />
@@ -107,7 +113,7 @@ let AddUserForm = ({ history, requestUserAdd }: Props) => {
 
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = () => ({
   //
 
 })
@@ -117,7 +123,4 @@ const mapDispatchToProps = {
   requestUserAdd
 };
 
-
-AddUserForm = connect(mapStateToProps, mapDispatchToProps)(AddUserForm)
-
-export default AddUserForm;
+export default connect(mapStateToProps, mapDispatchToProps)(AddUserForm);
