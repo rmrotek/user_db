@@ -7,6 +7,10 @@ import { requestUserAdd } from "../../services"
 
 import { History } from 'history';
 
+import AddIcon from '@material-ui/icons/Add';
+import { ArrowBack } from '@material-ui/icons';
+
+
 
 export interface FormValues {
   name: string;
@@ -98,10 +102,10 @@ let AddUserForm = ({ history, requestUserAdd }: any) => {
               </Grid>
               <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
                 <Grid item xl={4} lg={4} md={4} sm={5} xs={6}>
-                  <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
+                  <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' ><ArrowBack /> Go Back</Button>
                 </Grid>
                 <Grid item xl={4} lg={4} md={4} sm={5} xs={6}>
-                  <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'>Add User</Button>
+                  <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'>Add User <AddIcon /></Button>
                 </Grid>
 
               </Grid>
