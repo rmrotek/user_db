@@ -3,22 +3,22 @@ import { connect } from 'react-redux'
 import UserItem from '../UserItem/UserItem';
 import { List } from '@material-ui/core';
 
-import {IUsers} from '../../store/reducers/users'
+import { IUsers } from '../../store/reducers/users'
 
 type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
 
 let UserList = ({ users }: TProps) => {
-  
+
   let usersList;
   if (users) {
-    
-    usersList = users.map((user: IUsers, id: number) => (
-      <List key={`${id}`} style={{background: 'lightgrey'}}>
-        <UserItem user={user} />
-      </List>
-      
-    ))
+    usersList = (
+    <List style={{background: 'lightgrey'}} >
+      {users.map((user: IUsers, id: number) => (
+        <UserItem key={`${id}`} user={user} />
+      ))}
+    </List>)
+
   } else {
     usersList = <h3 className="loading-indicator">Loading ...</h3>
   }
@@ -29,7 +29,7 @@ let UserList = ({ users }: TProps) => {
   )
 }
 const mapStateToProps = (state: any) => ({
-  users: state.usersData.users  
+  users: state.usersData.users
 })
 
 const mapDispatchToProps = {
