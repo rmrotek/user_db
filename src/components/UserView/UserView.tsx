@@ -43,7 +43,7 @@ let UserView = ({ users, match, history, requestUserDelete }: any) => {
 
   if (user) {
     userView = (
-      <Grid container justify='center' item xl={6} lg={6} md={6} sm={11} xs={11} spacing={8} style={{ boxShadow: '0px 0px 10px black' }}>
+      <Grid container justify='center' item xl={6} lg={6} md={6} sm={11} xs={11} spacing={8}>
         <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
           <Typography variant='h4' align='center' paragraph>
             {'User Profile Page'}

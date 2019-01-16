@@ -1,4 +1,5 @@
 import React from 'react'
+import './UserList.css'
 import { connect } from 'react-redux'
 import UserItem from '../UserItem/UserItem';
 import { List } from '@material-ui/core';
@@ -13,12 +14,12 @@ let UserList = ({ users }: TProps) => {
   let usersList;
   if (users) {
     usersList = (
-    <List style={{background: 'lightgrey'}} >
+    <List className={'separator-top'}>
       {users.map((user: IUsers, id: number) => (
         <UserItem key={`${id}`} user={user} />
       ))}
-    </List>)
-
+    </List>
+    )
   } else {
     usersList = <h3 className="loading-indicator">Loading ...</h3>
   }
