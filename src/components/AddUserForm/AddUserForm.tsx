@@ -1,16 +1,15 @@
 import React from 'react';
-import { Grid, Typography, Button, TextField } from '@material-ui/core';
-import { Formik, Form, Field, FormikErrors, FormikProps, FieldProps } from 'formik';
-
 import { connect } from 'react-redux'
-import { requestUserAdd } from "../../services"
 
-import { History } from 'history';
-
+import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { ArrowBack } from '@material-ui/icons';
 
+import { History } from 'history';
 
+import { requestUserAdd } from "../../services"
+
+import { Formik, Form, Field, FieldProps } from 'formik';
 
 export interface FormValues {
   name: string;

@@ -1,21 +1,19 @@
 import React from 'react';
-import { Grid, Typography, Button, TextField } from '@material-ui/core';
-import { Formik, Form, Field, FieldProps } from 'formik';
-
 import { connect } from 'react-redux'
-import { requestUserEdit } from "../../services"
-import { MatchProps } from '../UserView/UserView';
-import { IUsers } from '../../store/reducers/users';
 
-import { History } from 'history';
-import {RouteComponentProps} from "react-router";
+import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 
+import { MatchProps } from '../UserView/UserView';
+import { IUsers } from '../../store/reducers/users';
 
+import { Formik, Form, Field, FieldProps } from 'formik';
 
+import { History } from 'history';
 
+import { requestUserEdit } from "../../services"
 interface Props {
   users: IUsers[];
   match: MatchProps;

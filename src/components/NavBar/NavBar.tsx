@@ -1,25 +1,22 @@
 import React from 'react';
-import { Typography, Button, IconButton } from '@material-ui/core'
-
-import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
-import { fetchUsers } from "../../services";
+import { connect } from 'react-redux'
+
+import { Typography, Button } from '@material-ui/core'
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-
 import CachedIcon from '@material-ui/icons/Cached'
+
+import { fetchUsers } from "../../services";
 
 const CustomLink = (props: any) => <Link to={`/addUser`} {...props} />
 
 type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
-
 let NavBar = ({ fetchUsers }: TProps) => {
   return (
-    <>
       <AppBar position="static"  >
         <Toolbar>
-
           <Typography variant="h6" color="inherit" style={{ flexGrow: 1 }}>
             User List APP
           </Typography>
@@ -29,12 +26,7 @@ let NavBar = ({ fetchUsers }: TProps) => {
           </div>
         </Toolbar>
       </AppBar>
-
-
-    </>
-
   );
-
 }
 
 const mapStateToProps = () => ({

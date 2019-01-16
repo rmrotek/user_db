@@ -1,15 +1,13 @@
 import React from 'react';
-import './UserListView.css'
-import { Grid, Typography, Button } from '@material-ui/core'
-import UserList from '../UserList/UserList';
-
 import { connect } from 'react-redux'
 
+import './UserListView.css'
 
+import { Grid, Typography } from '@material-ui/core'
 
+import UserList from '../UserList/UserList';
 
 type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
-
 
 let UserListView = ({ }: TProps) => {
   return (
@@ -22,18 +20,15 @@ let UserListView = ({ }: TProps) => {
           <Typography variant='h4' align='center' paragraph color='primary' >
             {'List of users:'}
           </Typography>
-          
-
 
         </Grid>
+
         <Grid item xl={12} lg={12} md={12} sm={12} xs={12}>
           <UserList />
         </Grid>
       </Grid>
     </Grid>
-
   );
-
 }
 
 const mapStateToProps = () => ({

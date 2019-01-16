@@ -1,19 +1,14 @@
 import React from 'react';
-
 import { connect } from 'react-redux'
-import { Grid, Typography, Button } from '@material-ui/core';
+import { Link } from 'react-router-dom';
 
 import { requestUserDelete } from "../../services"
-import { Link } from 'react-router-dom';
 import { IUsers } from '../../store/reducers/users';
 
+import { Grid, Typography, Button } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
 import EditIcon from '@material-ui/icons/Edit'
-
-
-
-
 
 interface MatchParamsProps {
   userId: string

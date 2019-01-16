@@ -1,16 +1,17 @@
 import React from 'react'
-import './UserList.css'
 import { connect } from 'react-redux'
-import UserItem from '../UserItem/UserItem';
+
+import './UserList.css'
+
 import { List } from '@material-ui/core';
+
+import UserItem from '../UserItem/UserItem';
 
 import { IUsers } from '../../store/reducers/users'
 
 type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
-
 let UserList = ({ users }: TProps) => {
-
   let usersList;
   if (users) {
     usersList = (
@@ -36,7 +37,5 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = {
   //for later
 };
-
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserList);

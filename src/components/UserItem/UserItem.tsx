@@ -1,4 +1,5 @@
 import React from 'react';
+
 import { ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import { AccountBox } from '@material-ui/icons'
 
@@ -9,9 +10,7 @@ interface Props {
    user: IUsers
 }
 
-
 let UserItem = ({ user }: Props) => (
-
    <ListItem  divider>
       <ListItemText
          primary={user.name}
@@ -22,7 +21,6 @@ let UserItem = ({ user }: Props) => (
          </IconButton>
       </ListItemSecondaryAction>
    </ListItem>
-
 );
 
 export default UserItem;
