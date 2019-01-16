@@ -46,7 +46,7 @@ let UserView = ({ users, match, history, requestUserDelete }: any) => {
       <Grid container justify='center' item xl={6} lg={6} md={6} sm={11} xs={11} spacing={8} className={'bg-gradient'}>
         <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
           <Typography variant='h4' align='center' paragraph>
-            {'User Profile Page'}
+            {`${user.name} Profile Page`}
           </Typography>
         </Grid>
 
