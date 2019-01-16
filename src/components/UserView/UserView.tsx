@@ -24,11 +24,13 @@ interface Props {
 
 export const CustomLink = (props: any) => <Link to={props.id} {...props}/>
 
+type TProps = {history: History, match: MatchProps} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
 
+//fix TProps/service types before typing, chaining does not work 
 
-let UserView = ({ users, match, history, requestUserDelete }: Props) => {
+let UserView = ({ users, match, history, requestUserDelete }: any) => {
   const userId = parseInt(match.params.userId);
-  const user = users && users.find(user => user.id === userId)
+  const user = users && users.find((user: IUsers) => user.id === userId)
   let userView;
 
   if (user) {

@@ -36,13 +36,6 @@ export interface IUsers {
   company: Company;
 }
 
-
-
-
-
-
-
-
 const reducer = (state: IUsers[] = [], action: UsersAction) => {
   switch (action.type) {
 

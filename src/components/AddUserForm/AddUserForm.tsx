@@ -17,7 +17,7 @@ export interface FormValues {
 type TProps = {history: History} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
 
-//fix TProps/service types before typing 
+//fix TProps/service types before typing, chaining does not work 
 let AddUserForm = ({ history, requestUserAdd }: any) => {
   return (
     <Formik
