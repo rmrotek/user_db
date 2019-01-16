@@ -14,14 +14,14 @@ export interface FormValues {
   email: string;
 }
 
-type TProps = {history: History} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
+type TProps = { history: History } & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
 
 //fix TProps/service types before typing, chaining does not work 
 let AddUserForm = ({ history, requestUserAdd }: any) => {
   return (
     <Formik
-      initialValues={{ name: '', username: '', email: '', }}
+      initialValues={{ name: '', username: '', email: '' }}
       validate={(values: FormValues) => {
         let errors: any
         if (!values.email) {
@@ -51,25 +51,23 @@ let AddUserForm = ({ history, requestUserAdd }: any) => {
         <Form >
           <Grid container justify='center'>
 
-            <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ background: 'lightgrey' }}>
+            <Grid container justify='center' item xl={6} lg={6} md={6} sm={11} xs={11} spacing={8} style={{ background: 'lightgrey' }}>
               <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
                 <Typography variant='h4' align='center' >
                   {'Add a User to Database'}
                 </Typography>
               </Grid>
               <Grid item xl={6} lg={12} md={12} sm={11} xs={11} >
-
-                <Typography variant='h6' align='center' >
+                <Typography variant='h6' align='center'  >
                   <Field
                     name="name"
                     render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='name' type="text" />
                     )}
                   />
-
                 </Typography>
 
-                <Typography variant='h6' align='center' >
+                <Typography variant='h6' align='center'  >
                   <Field
                     name="username"
                     render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
@@ -78,7 +76,7 @@ let AddUserForm = ({ history, requestUserAdd }: any) => {
                   />
                 </Typography>
 
-                <Typography variant='h6' align='center' >
+                <Typography variant='h6' align='center'  >
                   <Field
                     name="email"
                     render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
