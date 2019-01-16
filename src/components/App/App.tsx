@@ -22,7 +22,7 @@ class App extends Component<TProps> {
   render() {
     return (
       <Router>
-        <div>
+        <div style={{}}>
           <NavBar />
           <Typography paragraph></Typography>
           

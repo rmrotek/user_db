@@ -57,12 +57,12 @@ let AddUserForm = ({ history, requestUserAdd }: any) => {
                   {'Add a User to Database'}
                 </Typography>
               </Grid>
-              <Grid item xl={6} lg={12} md={12} sm={11} xs={11} >
+              <Grid item xl={6} lg={6} md={6} sm={6} xs={9} >
                 <Typography variant='h6' align='center'  >
                   <Field
                     name="name"
                     render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
-                      <TextField {...field} disabled={isSubmitting} label='name' type="text" />
+                      <TextField {...field} disabled={isSubmitting} label='name' type="text" variant='outlined' margin='dense' fullWidth required/>
                     )}
                   />
                 </Typography>
@@ -71,7 +71,7 @@ let AddUserForm = ({ history, requestUserAdd }: any) => {
                   <Field
                     name="username"
                     render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
-                      <TextField {...field} disabled={isSubmitting} label='username' type="text" />
+                      <TextField {...field} disabled={isSubmitting} label='username' type="text" variant='outlined' margin='dense' fullWidth required/>
                     )}
                   />
                 </Typography>
@@ -80,12 +80,14 @@ let AddUserForm = ({ history, requestUserAdd }: any) => {
                   <Field
                     name="email"
                     render={({ field, form: { isSubmitting } }: FieldProps<FormValues>) => (
-                      <TextField {...field} disabled={isSubmitting} label='email' type="email" />
+                      <TextField {...field} disabled={isSubmitting} label='email' type="email" variant='outlined' margin='dense' fullWidth required/>
                     )}
                   />
                 </Typography>
+              </Grid>
 
-                <Typography variant='h6' align='center' color='secondary'>
+              <Grid item xl={11} lg={11} md={11} sm={11} xs={11} >
+                <Typography variant='h6' align='center' color='error'>
                   {'Please fill in the fields, all are required'}
                 </Typography>
 
@@ -95,10 +97,10 @@ let AddUserForm = ({ history, requestUserAdd }: any) => {
 
               </Grid>
               <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
-                <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+                <Grid item xl={4} lg={4} md={4} sm={5} xs={6}>
                   <Button onClick={() => history.push('/')} fullWidth variant='outlined' color='primary' >Go Back</Button>
                 </Grid>
-                <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
+                <Grid item xl={4} lg={4} md={4} sm={5} xs={6}>
                   <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'>Add User</Button>
                 </Grid>
 
