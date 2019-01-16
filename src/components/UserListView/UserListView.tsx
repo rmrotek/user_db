@@ -4,10 +4,15 @@ import UserList from '../UserList/UserList';
 
 import { connect } from 'react-redux'
 import { Link } from 'react-router-dom';
+import { fetchUsers } from "../../services";
+
 
 const CustomLink = (props: any) => <Link to={`/addUser`} {...props}/>
 
-let UserListView = ({ fetchUsers }: any) => {
+type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
+
+
+let UserListView = ({ fetchUsers }: TProps) => {
   return (
     
     <Grid container justify='center'>
@@ -32,6 +37,7 @@ const mapStateToProps = () => ({
 })
 
 const mapDispatchToProps = {
+  fetchUsers
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserListView);

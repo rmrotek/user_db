@@ -17,8 +17,8 @@ export interface FormValues {
 type TProps = {history: History} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
 
-
-let AddUserForm = ({ history, requestUserAdd }: TProps) => {
+//fix TProps/service types before typing 
+let AddUserForm = ({ history, requestUserAdd }: any) => {
   return (
     <Formik
       initialValues={{ name: '', username: '', email: '', }}

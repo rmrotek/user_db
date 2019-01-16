@@ -37,8 +37,9 @@ export interface IFormValues {
 
 type TProps = {history: History, match: MatchProps} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
 
+//fix TProps/service types before typing 
 
-let EditUserForm = ({ users, match, requestUserEdit, history }: TProps) => {
+let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find((user: IUsers) => user.id === userId)
 
