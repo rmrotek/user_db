@@ -9,6 +9,11 @@ import { IUsers } from '../../store/reducers/users';
 
 import { History } from 'history';
 import {RouteComponentProps} from "react-router";
+import { ArrowBack } from '@material-ui/icons';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
+
+
 
 
 interface Props {
@@ -92,7 +97,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
         {({ isSubmitting }) => (
           <Form >
             <Grid container justify='center'>
-              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ background: 'lightgrey' }}>
+              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ boxShadow: '0px 0px 10px black' }}>
                 <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
                   <Typography variant='h4' align='center' >
                     {'User Profile Page'}
@@ -210,14 +215,14 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
                 </Grid>
 
                 <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
-                  <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                    <Button onClick={() => history.goBack()} fullWidth variant='outlined' color='primary' >Go Back</Button>
+                  <Grid item xl={1} lg={1} md={2} sm={2} xs={3}>
+                    <Button onClick={() => history.goBack()} fullWidth variant='outlined' color='primary' ><ArrowBack /></Button>
                   </Grid>
-                  <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                    <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'>Edit User</Button>
+                  <Grid item xl={4} lg={4} md={4} sm={4} xs={4}>
+                    <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'><SaveIcon /></Button>
                   </Grid>
-                  <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
-                    <Button disabled fullWidth variant='contained' color='secondary'>Delete User</Button>
+                  <Grid item xl={1} lg={1} md={2} sm={2} xs={3}>
+                    <Button disabled fullWidth variant='contained' color='secondary'><DeleteIcon /></Button>
                   </Grid>
                 </Grid>
 
