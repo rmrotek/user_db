@@ -94,13 +94,13 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
           }, 400);
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, values }) => (
           <Form >
             <Grid container justify='center'>
-              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ boxShadow: '0px 0px 10px black' }}>
+              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} className={'bg-gradient'} >
                 <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
                   <Typography variant='h4' align='center' paragraph>
-                    {'User Profile Page'}
+                    {`Editing ${values.name} Profile Page`}
                   </Typography>
                 </Grid>
 
