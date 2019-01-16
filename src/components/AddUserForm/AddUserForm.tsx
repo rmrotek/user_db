@@ -5,19 +5,20 @@ import { Formik, Form, Field, FormikErrors, FormikProps, FieldProps } from 'form
 import { connect } from 'react-redux'
 import { requestUserAdd } from "../../services"
 
-interface Props {
-  history: any;
-  requestUserAdd: any;
-}
+import { History } from 'history';
 
-interface FormValues {
+
+export interface FormValues {
   name: string;
   username: string;
   email: string;
 }
 
+type TProps = {history: History} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
-let AddUserForm = ({ history, requestUserAdd }: Props) => {
+
+
+let AddUserForm = ({ history, requestUserAdd }: TProps) => {
   return (
     <Formik
       initialValues={{ name: '', username: '', email: '', }}

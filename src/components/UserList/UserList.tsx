@@ -5,7 +5,10 @@ import { List } from '@material-ui/core';
 
 import {IUsers} from '../../store/reducers/users'
 
-let UserList = ({ users }: any) => {
+type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
+
+
+let UserList = ({ users }: TProps) => {
   
   let usersList;
   if (users) {

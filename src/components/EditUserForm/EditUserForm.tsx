@@ -7,10 +7,14 @@ import { requestUserEdit } from "../../services"
 import { MatchProps } from '../UserView/UserView';
 import { IUsers } from '../../store/reducers/users';
 
+import { History } from 'history';
+import {RouteComponentProps} from "react-router";
+
+
 interface Props {
   users: IUsers[];
   match: MatchProps;
-  history: any;
+  history: History;
   requestUserEdit: any;
 }
 
@@ -31,9 +35,12 @@ export interface IFormValues {
   geoLng: string
 }
 
-let EditUserForm = ({ users, match, requestUserEdit, history }: Props) => {
+type TProps = {history: History, match: MatchProps} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
+
+
+let EditUserForm = ({ users, match, requestUserEdit, history }: TProps) => {
   const userId = parseInt(match.params.userId);
-  const user = users && users.find(user => user.id === userId)
+  const user = users && users.find((user: IUsers) => user.id === userId)
 
   let editUserView;
 

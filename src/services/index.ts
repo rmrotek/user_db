@@ -2,6 +2,7 @@ import { receivedUsers } from "../store/reducers/actions"
 import { IFormValues } from "../components/EditUserForm/EditUserForm";
 import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
+import { FormValues } from "../components/AddUserForm/AddUserForm";
 
 
 
@@ -32,7 +33,7 @@ export function fetchUsers(): ThunkAction<void, null, null, Action> {
 }
 
 export function requestUserAdd(
-  data: IFormValues
+  data: FormValues
 ): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
     return fetch(`http://localhost:3001/users/`, {
