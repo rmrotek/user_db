@@ -7,6 +7,8 @@ import { fetchUsers } from "../../services";
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 
+import CachedIcon from '@material-ui/icons/Cached'
+
 const CustomLink = (props: any) => <Link to={`/addUser`} {...props} />
 
 type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
@@ -23,7 +25,7 @@ let NavBar = ({ fetchUsers }: TProps) => {
           </Typography>
           <div>
             <Button component={CustomLink} variant='contained' style={{ marginRight: 20 }} >Add New User</Button>
-            <Button onClick={() => fetchUsers()} variant='contained' >Refresh List</Button>
+            <Button onClick={() => fetchUsers()} variant='contained' > <CachedIcon/></Button>
           </div>
         </Toolbar>
       </AppBar>
