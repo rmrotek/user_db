@@ -1,10 +1,10 @@
-import { receivedUsers } from "../store/reducers/actions"
-import { IFormValues } from "../components/EditUserForm/EditUserForm";
-import { ThunkAction } from "redux-thunk";
 import { Action } from "redux";
+import { ThunkAction } from "redux-thunk";
+
+import { receivedUsers } from "../store/reducers/actions"
+
+import { IFormValues } from "../components/EditUserForm/EditUserForm";
 import { FormValues } from "../components/AddUserForm/AddUserForm";
-
-
 
 export function requestUserDelete(
   userId: number
@@ -16,7 +16,6 @@ export function requestUserDelete(
       .then(() => dispatch(fetchUsers()))
   }
 }
-
 
 export function fetchUsers(): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
@@ -67,8 +66,6 @@ export function requestUserAdd(
       .then(() => dispatch(fetchUsers()))
   }
 }
-
-
 
 export function requestUserEdit(
   data: IFormValues,

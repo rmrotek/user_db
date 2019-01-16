@@ -1,6 +1,6 @@
 import { ActionType } from 'typesafe-actions';
-import { RECEIVE_USERS } from './constants'
 
+import { RECEIVE_USERS } from './constants'
 
 import * as actions from './actions'
 
@@ -38,7 +38,6 @@ export interface IUsers {
 
 const reducer = (state: IUsers[] = [], action: UsersAction) => {
   switch (action.type) {
-
     case RECEIVE_USERS:
       return { ...state, users: action.payload };
     default:
