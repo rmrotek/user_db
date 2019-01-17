@@ -70,17 +70,19 @@ export const addUser = (data: FormValues): Promise<Response> => fetch(`http://lo
 
 
 export function requestUserAdd(
-  data: FormValues
+  data: FormValues,
+  handleSuccess: () => void
 ): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
     return addUser(data)
       .then(() => dispatch(fetchUsers()))
+      .then(handleSuccess)
   }
 }
 //
 export const editUser = (
   data: IFormValues,
-  userId: number
+  userId: number,
 ): Promise<Response>  => fetch(`http://localhost:3001/users/${userId}`, {
   method: 'PATCH',
   body: JSON.stringify({
@@ -112,10 +114,12 @@ export const editUser = (
 
 export function requestUserEdit(
   data: IFormValues,
-  userId: number
+  userId: number,
+  handleSuccess: () => void
 ): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
     return editUser(data, userId)
       .then(() => dispatch(fetchUsers()))
+      .then(handleSuccess)
   }
 }
