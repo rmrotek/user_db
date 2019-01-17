@@ -5,6 +5,8 @@ import { Link } from 'react-router-dom';
 import { requestUserDelete } from "../../services"
 import { IUsers } from '../../store/reducers/users';
 
+import { History } from 'history';
+
 import { Grid, Typography, Button } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -31,7 +33,7 @@ type TProps = { history: History, match: MatchProps } & ReturnType<typeof mapSta
 
 //fix TProps/service types before typing, chaining does not work 
 
-let UserView = ({ users, match, history, requestUserDelete }: any) => {
+let UserView = ({ users, match, history, requestUserDelete }: TProps) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find((user: IUsers) => user.id === userId)
   let userView;
@@ -115,7 +117,7 @@ let UserView = ({ users, match, history, requestUserDelete }: any) => {
             <Button component={CustomLink} id={`/users/${userId}/edit`} fullWidth variant='contained' color='primary'><EditIcon /> </Button>
           </Grid>
           <Grid item xl={1} lg={1} md={2} sm={2} xs={3}>
-            <Button onClick={() => requestUserDelete(user.id).then(() => history.push('/'))} fullWidth variant='contained' color='secondary'><DeleteIcon /></Button>
+            <Button onClick={() => requestUserDelete(user.id,(() => history.push('/')))} fullWidth variant='contained' color='secondary'><DeleteIcon /></Button>
           </Grid>
         </Grid>
       </Grid>

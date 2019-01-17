@@ -7,13 +7,14 @@ import { IFormValues } from "../components/EditUserForm/EditUserForm";
 import { FormValues } from "../components/AddUserForm/AddUserForm";
 
 export function requestUserDelete(
-  userId: number
+  userId: number,
+  handleSuccess: () => void
 ): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
     return fetch(`http://localhost:3001/users/${userId}`, {
       method: 'DELETE'
     })
-      .then(() => dispatch(fetchUsers()))
+      .then(() => dispatch(fetchUsers())).then(handleSuccess)
   }
 }
 
@@ -26,10 +27,12 @@ export function fetchUsers(): ThunkAction<void, null, null, Action> {
       )
       .then((json) => {
         dispatch(receivedUsers(json));
-      },
+      }
       );
   };
 }
+
+
 
 export function requestUserAdd(
   data: FormValues
