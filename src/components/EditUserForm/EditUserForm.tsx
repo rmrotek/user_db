@@ -1,15 +1,52 @@
 import React from 'react';
-import { Grid, Typography, Button, TextField } from '@material-ui/core';
-import { Formik, Form, Field } from 'formik';
-
 import { connect } from 'react-redux'
-import { requestUserEdit } from "../../store/reducers/users"
 
-let EditUserForm = ({ users, match, requestUserEdit, history }) => {
+import { Grid, Typography, Button, TextField } from '@material-ui/core';
+import { ArrowBack } from '@material-ui/icons';
+import DeleteIcon from '@material-ui/icons/Delete';
+import SaveIcon from '@material-ui/icons/Save';
+
+import { MatchProps } from '../UserView/UserView';
+import { IUsers } from '../../store/reducers/users';
+
+import { Formik, Form, Field, FieldProps } from 'formik';
+
+import { History } from 'history';
+
+import { requestUserEdit } from "../../services"
+interface Props {
+  users: IUsers[];
+  match: MatchProps;
+  history: History;
+  requestUserEdit: any;
+}
+
+export interface IFormValues {
+  name: string,
+  username: string,
+  email: string,
+  phone: string,
+  website: string,
+  street: string,
+  suite: string,
+  city: string,
+  zipcode: string,
+  companyName: string,
+  companyCatchPhrase: string,
+  companyBs: string,
+  geoLat: string,
+  geoLng: string
+}
+
+type TProps = {history: History, match: MatchProps} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
+
+//fix TProps/service types before typing 
+
+let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
   const userId = parseInt(match.params.userId);
-  const user = users && users.find(user => user.id === userId)
+  const user = users && users.find((user: IUsers) => user.id === userId)
 
-  let editUserView = '';
+  let editUserView;
 
   if (user) {
     editUserView = (
@@ -30,8 +67,8 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
           geoLat: user.address.geo.lat,
           geoLng: user.address.geo.lng
         }}
-        validate={values => {
-          let errors = {};
+        validate={(values: IFormValues) => {
+          let errors: any;
           if (!values.email) {
             errors.email = 'Required';
           } else if (
@@ -55,13 +92,13 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
           }, 400);
         }}
       >
-        {({ isSubmitting }) => (
+        {({ isSubmitting, values }) => (
           <Form >
             <Grid container justify='center'>
-              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} style={{ background: 'lightgrey' }}>
+              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} className={'bg-gradient'} >
                 <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
-                  <Typography variant='h4' align='center' >
-                    {'User Profile Page'}
+                  <Typography variant='h4' align='center' paragraph>
+                    {`Editing ${values.name} Profile Page`}
                   </Typography>
                 </Grid>
 
@@ -72,7 +109,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="name"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='name' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -80,7 +117,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="username"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='username' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -88,21 +125,21 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="email"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='email' margin='dense' variant='outlined' type="email" fullWidth />
                       )}
                     />
                   </Typography>
                   <Field
                     name="phone"
-                    render={({ field, form: { isSubmitting } }) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='phone' margin='dense' variant='outlined' type="text" fullWidth />
                     )}
                   />
                   <Typography variant='h6' >
                     <Field
                       name="website"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='website' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -115,14 +152,14 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   </Typography>
                   <Field
                     name="street"
-                    render={({ field, form: { isSubmitting } }) => (
+                    render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                       <TextField {...field} disabled={isSubmitting} label='street' margin='dense' variant='outlined' type="text" fullWidth />
                     )}
                   />
                   <Typography variant='h6' >
                     <Field
                       name="suite"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='suite' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -130,7 +167,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="city"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='city' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -138,7 +175,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="zipcode"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='zipcode' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -152,7 +189,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyName"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='name' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -160,7 +197,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyCatchPhrase"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='catch phrase' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -168,7 +205,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                   <Typography variant='h6' >
                     <Field
                       name="companyBs"
-                      render={({ field, form: { isSubmitting } }) => (
+                      render={({ field, form: { isSubmitting } }: FieldProps<IFormValues>) => (
                         <TextField {...field} disabled={isSubmitting} label='BS' margin='dense' variant='outlined' type="text" fullWidth />
                       )}
                     />
@@ -176,17 +213,17 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
                 </Grid>
 
                 <Grid container item xl={11} lg={11} md={11} sm={11} xs={11} justify='space-between'>
-                  <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                    <Button onClick={() => history.goBack()} fullWidth variant='outlined' color='primary' >Go Back</Button>
+                  <Grid item xl={1} lg={1} md={2} sm={2} xs={3}>
+                    <Button onClick={() => history.goBack()} fullWidth variant='outlined' color='primary' ><ArrowBack /></Button>
                   </Grid>
-                  <Grid item xl={4} lg={4} md={4} sm={12} xs={12}>
-                    <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'>Edit User</Button>
+                  <Grid item xl={4} lg={4} md={4} sm={4} xs={4}>
+                    <Button type='submit' disabled={isSubmitting} fullWidth variant='contained' color='primary'><SaveIcon /></Button>
                   </Grid>
-                  <Grid item xl={2} lg={2} md={2} sm={12} xs={12}>
-                    <Button disabled fullWidth variant='contained' color='secondary'>Delete User</Button>
+                  <Grid item xl={1} lg={1} md={2} sm={2} xs={3}>
+                    <Button disabled fullWidth variant='contained' color='secondary'><DeleteIcon /></Button>
                   </Grid>
                 </Grid>
-                
+
               </Grid>
             </Grid>
           </Form>
@@ -207,7 +244,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }) => {
   )
 };
 
-const mapStateToProps = (state) => ({
+const mapStateToProps = (state: any) => ({
   users: state.usersData.users,
 
 })
@@ -217,7 +254,4 @@ const mapDispatchToProps = {
 
 };
 
-
-EditUserForm = connect(mapStateToProps, mapDispatchToProps)(EditUserForm)
-
-export default EditUserForm;
+export default connect(mapStateToProps, mapDispatchToProps)(EditUserForm);

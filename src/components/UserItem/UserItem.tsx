@@ -1,22 +1,26 @@
 import React from 'react';
+
 import { ListItem, ListItemText, ListItemSecondaryAction, IconButton } from '@material-ui/core';
 import { AccountBox } from '@material-ui/icons'
 
-import { Link } from "react-router-dom";
+import {CustomLink} from '../CustomLink/CustomLink'
 
-let UserItem = ({ user }) => (
+import {IUsers} from '../../store/reducers/users'
+interface Props {
+   user: IUsers
+}
 
-   <ListItem alignItems='flex-start' divider>
+let UserItem = ({ user }: Props) => (
+   <ListItem  divider>
       <ListItemText
          primary={user.name}
          secondary={user.email} />
       <ListItemSecondaryAction >
-         <IconButton color='primary' aria-label="Details" component={Link} to={`/users/${user.id}`}>
+         <IconButton color='primary' aria-label="Details" component={CustomLink} id={`${user.id}`}>
             <AccountBox />
          </IconButton>
       </ListItemSecondaryAction>
    </ListItem>
-
 );
 
 export default UserItem;

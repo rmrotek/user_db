@@ -1,56 +1,24 @@
-// export interface Geo {
-//   lat: string;
-//   lng: string;
-// }
+import { Action } from "redux";
+import { ThunkAction } from "redux-thunk";
 
-// export interface Address {
-//   street: string;
-//   suite: string;
-//   city: string;
-//   zipcode: string;
-//   geo: Geo;
-// }
+import { receivedUsers } from "../store/reducers/actions"
 
-// export interface Company {
-//   name: string;
-//   catchPhrase: string;
-//   bs: string;
-// }
+import { IFormValues } from "../components/EditUserForm/EditUserForm";
+import { FormValues } from "../components/AddUserForm/AddUserForm";
 
-// export interface Users {
-//   id: number;
-//   name: string;
-//   username: string;
-//   email: string;
-//   address: Address;
-//   phone: string;
-//   website: string;
-//   company: Company;
-// }
-
-
-
-export const REQUEST_USERS = 'REQUEST_USERS';
-export const RECEIVE_USERS = 'RECEIVE_USERS';
-export const DELETE_USER = 'DELETE_USER';
-
-export const requestUsers = () => ({
-  type: REQUEST_USERS,
-});
-
-export const receivedUsers = data => ({
-  type: RECEIVE_USERS,
-  users: data,
-});
-
-// export const deleteUser = userId => ({
-//   type: DELETE_USER,
-//   userId,
-// });
-
-export function fetchUsers() {
+export function requestUserDelete(
+  userId: number
+): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
-    dispatch(requestUsers());
+    return fetch(`http://localhost:3001/users/${userId}`, {
+      method: 'DELETE'
+    })
+      .then(() => dispatch(fetchUsers()))
+  }
+}
+
+export function fetchUsers(): ThunkAction<void, null, null, Action> {
+  return function (dispatch) {
     return fetch(`http://localhost:3001/users`)
       .then(
         response => response.json(),
@@ -63,16 +31,9 @@ export function fetchUsers() {
   };
 }
 
-export function requestUserDelete(userId) {
-  return function (dispatch) {
-    return fetch(`http://localhost:3001/users/${userId}`, {
-      method: 'DELETE'
-    })
-      .then(() => dispatch(fetchUsers()))
-  }
-}
-
-export function requestUserAdd(data) {
+export function requestUserAdd(
+  data: FormValues
+): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
     return fetch(`http://localhost:3001/users/`, {
       method: 'POST',
@@ -106,7 +67,10 @@ export function requestUserAdd(data) {
   }
 }
 
-export function requestUserEdit(data, userId) {
+export function requestUserEdit(
+  data: IFormValues,
+  userId: number
+): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
     return fetch(`http://localhost:3001/users/${userId}`, {
       method: 'PATCH',
@@ -139,18 +103,3 @@ export function requestUserEdit(data, userId) {
       .then(() => dispatch(fetchUsers()))
   }
 }
-
-const reducer = (state = {}, action) => {
-  switch (action.type) {
-    case REQUEST_USERS:
-      return { ...state, loading: true };
-    case RECEIVE_USERS:
-      return { ...state, users: action.users, loading: false };
-    // case DELETE_USER:
-    //   return {users: state.users.filter(user => user.id !== action.userId)}
-    default:
-      return state;
-  }
-};
-
-export default reducer

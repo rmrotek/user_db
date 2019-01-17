@@ -3,9 +3,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
 
 import thunk from 'redux-thunk';
 
-import userReducer, { fetchUsers } from "./reducers/users";
-
-
+import userReducer from "./reducers/users";
 
 const rootReducer = combineReducers({
   usersData: userReducer
@@ -14,15 +12,6 @@ const rootReducer = combineReducers({
 const store = createStore(
   rootReducer, composeWithDevTools(
     applyMiddleware(thunk),
-    // other store enhancers if any
   ));
-
-
-
-
-store.dispatch(
-  fetchUsers()
-);
-
 
 export default store 
