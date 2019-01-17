@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux'
-import { Link } from 'react-router-dom';
+import { Link, RouteComponentProps } from 'react-router-dom';
 
 import { requestUserDelete } from "../../services"
 import { IUsers } from '../../store/reducers/users';
@@ -29,7 +29,7 @@ interface Props {
 
 export const CustomLink = (props: any) => <Link to={props.id} {...props} />
 
-type TProps = { history: History, match: MatchProps } & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
+type TProps = RouteComponentProps<{ userId: string }> & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
 //fix TProps/service types before typing, chaining does not work 
 
