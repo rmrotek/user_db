@@ -93,13 +93,13 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: TProps) => {
           }, 400);
         }}
       >
-        {({ isSubmitting, values }) => (
+        {({ isSubmitting }) => (
           <Form >
             <Grid container justify='center'>
-              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} className={'bg-gradient'} >
+              <Grid container justify='center' item xl={7} lg={7} md={7} sm={11} xs={11} spacing={8} className={'bg-gradient'} >
                 <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
-                  <Typography variant='h4' align='center' paragraph>
-                    {`Editing ${values.name} Profile Page`}
+                  <Typography variant='h4' align='left' paragraph>
+                    {`Editing Profile...`}
                   </Typography>
                 </Grid>
 
@@ -147,7 +147,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: TProps) => {
                   </Typography>
                 </Grid>
 
-                <Grid item xl={5} lg={5} md={5} sm={11} xs={11}>
+                <Grid item xl={6} lg={6} md={6} sm={11} xs={11} >
                   <Typography variant='h5' >
                     {'Address'}
                   </Typography>
