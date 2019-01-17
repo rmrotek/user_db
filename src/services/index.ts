@@ -12,10 +12,9 @@ export function requestUserDelete(
   handleSuccess: () => void
 ): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
-    return fetch(`http://localhost:3001/users/${userId}`, {
-      method: 'DELETE'
-    })
-      .then(() => dispatch(fetchUsers())).then(handleSuccess)
+    return deleteUser(userId)
+      .then(() => dispatch(fetchUsers()))
+      .then(handleSuccess)
   }
 }
 
@@ -33,10 +32,10 @@ export const deleteUser = (userId: number): Promise<Response> => fetch(`http://l
 //   }
 // }
 export const getUsers = (): Promise<IUsers> => fetch('http://localhost:3001/users')
-      .then(
-        response => response.json(),
-        error => console.log('An error occurred.', error),
-      )
+  .then(
+    response => response.json(),
+    error => console.log('An error occurred.', error),
+  )
 
 export function fetchUsers(): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
