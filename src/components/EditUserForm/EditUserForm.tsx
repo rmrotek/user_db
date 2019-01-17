@@ -14,6 +14,7 @@ import { Formik, Form, Field, FieldProps } from 'formik';
 import { History } from 'history';
 
 import { requestUserEdit } from "../../services"
+import { RouteComponentProps } from 'react-router';
 interface Props {
   users: IUsers[];
   match: MatchProps;
@@ -38,11 +39,11 @@ export interface IFormValues {
   geoLng: string
 }
 
-type TProps = {history: History, match: MatchProps} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
+type TProps = RouteComponentProps<{ userId: string }>  & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
 
 //fix TProps/service types before typing 
 
-let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
+let EditUserForm = ({ users, match, requestUserEdit, history }: TProps) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find((user: IUsers) => user.id === userId)
 
@@ -87,7 +88,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            requestUserEdit(values, user.id).then(() => history.goBack());
+            requestUserEdit(values, user.id, (() => history.goBack()))
             setSubmitting(false);
           }, 400);
         }}
