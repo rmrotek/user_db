@@ -38,7 +38,7 @@ export function fetchUsers(): ThunkAction<void, null, null, Action> {
   };
 }
 //
-export const addUser = (data: FormValues): Promise<any> => fetch(`http://localhost:3001/users/`, {
+export const addUser = (data: FormValues): Promise<Response> => fetch(`http://localhost:3001/users/`, {
   method: 'POST',
   body: JSON.stringify({
     name: data.name,
@@ -81,7 +81,7 @@ export function requestUserAdd(
 export const editUser = (
   data: IFormValues,
   userId: number
-) => fetch(`http://localhost:3001/users/${userId}`, {
+): Promise<Response>  => fetch(`http://localhost:3001/users/${userId}`, {
   method: 'PATCH',
   body: JSON.stringify({
     name: data.name,
