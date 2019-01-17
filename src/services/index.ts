@@ -5,6 +5,7 @@ import { receivedUsers } from "../store/reducers/actions"
 
 import { IFormValues } from "../components/EditUserForm/EditUserForm";
 import { FormValues } from "../components/AddUserForm/AddUserForm";
+import { IUsers } from "../store/reducers/users";
 
 export function requestUserDelete(
   userId: number,
@@ -18,13 +19,28 @@ export function requestUserDelete(
   }
 }
 
-export function fetchUsers(): ThunkAction<void, null, null, Action> {
-  return function (dispatch) {
-    return fetch(`http://localhost:3001/users`)
+export const deleteUser = (userId: number): Promise<Response> => fetch(`http://localhost:3001/users/${userId}`, {
+  method: 'DELETE'
+})
+
+// export function requestUserDelete(
+//   userId: number,
+//   callback: () => void
+// ): ThunkAction<void, null, null, Action> {
+//   return deleteUser(userId)
+//       .then(() => dispatch(fetchUsers()))
+//       .then(callback)
+//   }
+// }
+export const getUsers = (): Promise<IUsers> => fetch('http://localhost:3001/users')
       .then(
         response => response.json(),
         error => console.log('An error occurred.', error),
       )
+
+export function fetchUsers(): ThunkAction<void, null, null, Action> {
+  return function (dispatch) {
+    return getUsers()
       .then((json) => {
         dispatch(receivedUsers(json));
       }
