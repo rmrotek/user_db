@@ -13,7 +13,8 @@ import { Formik, Form, Field, FieldProps } from 'formik';
 
 import { History } from 'history';
 
-import { requestUserEdit } from "../../services"
+import { requestUserEdit } from "../../thunks"
+import { RouteComponentProps } from 'react-router';
 interface Props {
   users: IUsers[];
   match: MatchProps;
@@ -38,11 +39,11 @@ export interface IFormValues {
   geoLng: string
 }
 
-type TProps = {history: History, match: MatchProps} & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
+type TProps = RouteComponentProps<{ userId: string }>  & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
 
 //fix TProps/service types before typing 
 
-let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
+let EditUserForm = ({ users, match, requestUserEdit, history }: TProps) => {
   const userId = parseInt(match.params.userId);
   const user = users && users.find((user: IUsers) => user.id === userId)
 
@@ -87,18 +88,18 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
         }}
         onSubmit={(values, { setSubmitting }) => {
           setTimeout(() => {
-            requestUserEdit(values, user.id).then(() => history.goBack());
+            requestUserEdit(values, user.id, (() => history.goBack()))
             setSubmitting(false);
           }, 400);
         }}
       >
-        {({ isSubmitting, values }) => (
+        {({ isSubmitting }) => (
           <Form >
             <Grid container justify='center'>
-              <Grid container justify='center' item xl={11} lg={11} md={11} sm={11} xs={11} spacing={8} className={'bg-gradient'} >
+              <Grid container justify='center' item xl={7} lg={7} md={7} sm={11} xs={11} spacing={8} className={'bg-gradient'} >
                 <Grid item xl={11} lg={11} md={11} sm={11} xs={11}>
-                  <Typography variant='h4' align='center' paragraph>
-                    {`Editing ${values.name} Profile Page`}
+                  <Typography variant='h4' align='left' paragraph>
+                    {`Editing Profile...`}
                   </Typography>
                 </Grid>
 
@@ -146,7 +147,7 @@ let EditUserForm = ({ users, match, requestUserEdit, history }: any) => {
                   </Typography>
                 </Grid>
 
-                <Grid item xl={5} lg={5} md={5} sm={11} xs={11}>
+                <Grid item xl={6} lg={6} md={6} sm={11} xs={11} >
                   <Typography variant='h5' >
                     {'Address'}
                   </Typography>

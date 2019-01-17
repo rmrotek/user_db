@@ -9,7 +9,7 @@ import AddUserForm from '../AddUserForm/AddUserForm';
 import EditUserForm from '../EditUserForm/EditUserForm';
 import NavBar from '../NavBar/NavBar';
 
-import { fetchUsers } from "../../services";
+import { fetchUsers } from "../../thunks";
 
 type TProps = ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 class App extends Component<TProps> {

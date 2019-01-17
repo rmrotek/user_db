@@ -7,7 +7,7 @@ import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import CachedIcon from '@material-ui/icons/Cached'
 
-import { fetchUsers } from "../../services";
+import { fetchUsers } from "../../thunks";
 
 const CustomLink = (props: any) => <Link to={`/addUser`} {...props} />
 
