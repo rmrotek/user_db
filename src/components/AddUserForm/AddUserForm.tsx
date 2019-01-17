@@ -5,11 +5,10 @@ import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { ArrowBack } from '@material-ui/icons';
 
-import { History } from 'history';
-
 import { requestUserAdd } from "../../services"
 
 import { Formik, Form, Field, FieldProps } from 'formik';
+import { RouteComponentProps } from 'react-router';
 
 export interface FormValues {
   name: string;
@@ -17,7 +16,7 @@ export interface FormValues {
   email: string;
 }
 
-type TProps = { history: History } & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
+type TProps = RouteComponentProps & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
 
 
 //fix TProps/service types before typing, chaining does not work 
@@ -123,7 +122,6 @@ const mapStateToProps = () => ({
 })
 
 const mapDispatchToProps = {
-
   requestUserAdd
 };
 
