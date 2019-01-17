@@ -22,15 +22,6 @@ export const deleteUser = (userId: number): Promise<Response> => fetch(`http://l
   method: 'DELETE'
 })
 
-// export function requestUserDelete(
-//   userId: number,
-//   callback: () => void
-// ): ThunkAction<void, null, null, Action> {
-//   return deleteUser(userId)
-//       .then(() => dispatch(fetchUsers()))
-//       .then(callback)
-//   }
-// }
 export const getUsers = (): Promise<IUsers> => fetch('http://localhost:3001/users')
   .then(
     response => response.json(),
@@ -47,40 +38,42 @@ export function fetchUsers(): ThunkAction<void, null, null, Action> {
   };
 }
 
+export const addUser = (data: FormValues): Promise<any> => fetch(`http://localhost:3001/users/`, {
+  method: 'POST',
+  body: JSON.stringify({
+    name: data.name,
+    username: data.username,
+    email: data.email,
+    address: {
+      street: "Kulas Light",
+      suite: "Apt. 556",
+      city: "Gwenborough",
+      zipcode: "92998-3874",
+      geo: {
+        lat: "-37.3159",
+        lng: "81.1496"
+      }
+    },
+    phone: "1-770-736-8031 x56442",
+    website: "hildegard.org",
+    company: {
+      name: "Romaguera-Crona",
+      catchPhrase: "Multi-layered client-server neural-net",
+      bs: "harness real-time e-markets"
+    }
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
+
 
 
 export function requestUserAdd(
   data: FormValues
 ): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
-    return fetch(`http://localhost:3001/users/`, {
-      method: 'POST',
-      body: JSON.stringify({
-        name: data.name,
-        username: data.username,
-        email: data.email,
-        address: {
-          street: "Kulas Light",
-          suite: "Apt. 556",
-          city: "Gwenborough",
-          zipcode: "92998-3874",
-          geo: {
-            lat: "-37.3159",
-            lng: "81.1496"
-          }
-        },
-        phone: "1-770-736-8031 x56442",
-        website: "hildegard.org",
-        company: {
-          name: "Romaguera-Crona",
-          catchPhrase: "Multi-layered client-server neural-net",
-          bs: "harness real-time e-markets"
-        }
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
+    return addUser(data)
       .then(() => dispatch(fetchUsers()))
   }
 }
