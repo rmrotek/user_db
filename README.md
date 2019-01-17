@@ -1,5 +1,7 @@
 A simple APP with a mock server to fetch data from. My 1st try at TypeScript and redux-thunk.
 
+Theres a backup db.json in `/backup`
+
 ### Features:
 - fetch data from API, store data in redux store,
 - option to manually re-fetch data,

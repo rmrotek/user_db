@@ -1,10 +1,10 @@
 import { Action } from "redux";
 import { ThunkAction } from "redux-thunk";
 
-import { receivedUsers } from "../store/reducers/actions"
-
 import { IFormValues } from "../components/EditUserForm/EditUserForm";
 import { FormValues } from "../components/AddUserForm/AddUserForm";
+
+import { receivedUsers } from "../store/reducers/actions"
 import { deleteUser, getUsers, addUser, editUser } from "../services";
 
 export function requestUserDelete(

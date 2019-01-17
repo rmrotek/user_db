@@ -6,21 +6,12 @@ import { ArrowBack } from '@material-ui/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
 import SaveIcon from '@material-ui/icons/Save';
 
-import { MatchProps } from '../UserView/UserView';
 import { IUsers } from '../../store/reducers/users';
 
 import { Formik, Form, Field, FieldProps } from 'formik';
 
-import { History } from 'history';
-
 import { requestUserEdit } from "../../thunks"
 import { RouteComponentProps } from 'react-router';
-interface Props {
-  users: IUsers[];
-  match: MatchProps;
-  history: History;
-  requestUserEdit: any;
-}
 
 export interface IFormValues {
   name: string,
@@ -40,8 +31,6 @@ export interface IFormValues {
 }
 
 type TProps = RouteComponentProps<{ userId: string }>  & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps 
-
-//fix TProps/service types before typing 
 
 let EditUserForm = ({ users, match, requestUserEdit, history }: TProps) => {
   const userId = parseInt(match.params.userId);

@@ -5,8 +5,6 @@ import { Link, RouteComponentProps } from 'react-router-dom';
 import { requestUserDelete } from "../../thunks"
 import { IUsers } from '../../store/reducers/users';
 
-import { History } from 'history';
-
 import { Grid, Typography, Button } from '@material-ui/core';
 import { ArrowBack } from '@material-ui/icons';
 import DeleteIcon from '@material-ui/icons/Delete';
@@ -30,8 +28,6 @@ interface Props {
 export const CustomLink = (props: any) => <Link to={props.id} {...props} />
 
 type TProps = RouteComponentProps<{ userId: string }> & ReturnType<typeof mapStateToProps> & typeof mapDispatchToProps
-
-//fix TProps/service types before typing, chaining does not work 
 
 let UserView = ({ users, match, history, requestUserDelete }: TProps) => {
   const userId = parseInt(match.params.userId);
@@ -144,7 +140,6 @@ const mapStateToProps = (state: any) => ({
 const mapDispatchToProps = {
   requestUserDelete
 };
-
 
 export default connect(mapStateToProps, mapDispatchToProps)(UserView);
 
