@@ -21,7 +21,7 @@ type TProps = { history: History } & ReturnType<typeof mapStateToProps> & typeof
 
 
 //fix TProps/service types before typing, chaining does not work 
-let AddUserForm = ({ history, requestUserAdd }: any) => {
+let AddUserForm = ({ history, requestUserAdd }: TProps) => {
   return (
     <Formik
       initialValues={{ name: '', username: '', email: '' }}
@@ -45,7 +45,7 @@ let AddUserForm = ({ history, requestUserAdd }: any) => {
       }}
       onSubmit={(values, { setSubmitting }) => {
         setTimeout(() => {
-          requestUserAdd(values).then(() => history.push('/'));
+          requestUserAdd(values, (() => history.push('/')))
           setSubmitting(false);
         }, 400);
       }}
