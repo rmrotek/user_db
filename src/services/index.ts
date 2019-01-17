@@ -17,11 +17,11 @@ export function requestUserDelete(
       .then(handleSuccess)
   }
 }
-
+//
 export const deleteUser = (userId: number): Promise<Response> => fetch(`http://localhost:3001/users/${userId}`, {
   method: 'DELETE'
 })
-
+//
 export const getUsers = (): Promise<IUsers> => fetch('http://localhost:3001/users')
   .then(
     response => response.json(),
@@ -37,7 +37,7 @@ export function fetchUsers(): ThunkAction<void, null, null, Action> {
       );
   };
 }
-
+//
 export const addUser = (data: FormValues): Promise<any> => fetch(`http://localhost:3001/users/`, {
   method: 'POST',
   body: JSON.stringify({
@@ -77,40 +77,45 @@ export function requestUserAdd(
       .then(() => dispatch(fetchUsers()))
   }
 }
+//
+export const editUser = (
+  data: IFormValues,
+  userId: number
+) => fetch(`http://localhost:3001/users/${userId}`, {
+  method: 'PATCH',
+  body: JSON.stringify({
+    name: data.name,
+    username: data.username,
+    email: data.email,
+    address: {
+      street: data.street,
+      suite: data.suite,
+      city: data.city,
+      zipcode: data.zipcode,
+      geo: {
+        lat: data.geoLat,
+        lng: data.geoLng
+      }
+    },
+    phone: data.phone,
+    website: data.website,
+    company: {
+      name: data.companyName,
+      catchPhrase: data.companyCatchPhrase,
+      bs: data.companyBs
+    }
+  }),
+  headers: {
+    "Content-type": "application/json; charset=UTF-8"
+  }
+})
 
 export function requestUserEdit(
   data: IFormValues,
   userId: number
 ): ThunkAction<void, null, null, Action> {
   return function (dispatch) {
-    return fetch(`http://localhost:3001/users/${userId}`, {
-      method: 'PATCH',
-      body: JSON.stringify({
-        name: data.name,
-        username: data.username,
-        email: data.email,
-        address: {
-          street: data.street,
-          suite: data.suite,
-          city: data.city,
-          zipcode: data.zipcode,
-          geo: {
-            lat: data.geoLat,
-            lng: data.geoLng
-          }
-        },
-        phone: data.phone,
-        website: data.website,
-        company: {
-          name: data.companyName,
-          catchPhrase: data.companyCatchPhrase,
-          bs: data.companyBs
-        }
-      }),
-      headers: {
-        "Content-type": "application/json; charset=UTF-8"
-      }
-    })
+    return editUser(data, userId)
       .then(() => dispatch(fetchUsers()))
   }
 }
