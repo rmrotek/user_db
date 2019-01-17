@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux'
 import { Link, RouteComponentProps } from 'react-router-dom';
 
-import { requestUserDelete } from "../../services"
+import { requestUserDelete } from "../../thunks"
 import { IUsers } from '../../store/reducers/users';
 
 import { History } from 'history';

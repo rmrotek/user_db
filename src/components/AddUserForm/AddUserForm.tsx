@@ -5,7 +5,7 @@ import { Grid, Typography, Button, TextField } from '@material-ui/core';
 import AddIcon from '@material-ui/icons/Add';
 import { ArrowBack } from '@material-ui/icons';
 
-import { requestUserAdd } from "../../services"
+import { requestUserAdd } from "../../thunks"
 
 import { Formik, Form, Field, FieldProps } from 'formik';
 import { RouteComponentProps } from 'react-router';

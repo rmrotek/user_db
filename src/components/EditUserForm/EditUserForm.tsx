@@ -13,7 +13,7 @@ import { Formik, Form, Field, FieldProps } from 'formik';
 
 import { History } from 'history';
 
-import { requestUserEdit } from "../../services"
+import { requestUserEdit } from "../../thunks"
 import { RouteComponentProps } from 'react-router';
 interface Props {
   users: IUsers[];
